@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>image-to-sbgn analysis</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      /* background-color: #f0f0f0; */
+    }
+
+    .container {
+      width: 430px;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .section label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .section .title {
+      font-weight: bold;
+    }
+
+    .options {
+      display: flex;
+      /* flex-direction: column; */
+      gap: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h3 style="margin-top: 0;">image-to-sbgn analysis</h3>
+    <hr>
+    <!-- LLM Section -->
+    <div class="section">
+      <label class="title">LLM:</label>
+      <div class="options">
+        <label><input type="radio" name="llm" value="gpt-4o">
+          GPT-4o</label>
+        <label><input type="radio" name="llm" value="gemini_pro_1.5">
+          Gemini Pro 1.5</label>
+      </div>
+    </div>
+
+    <!-- Language Section -->
+    <div class="section">
+      <label class="title">Language:</label>
+      <div class="options">
+        <label><input type="radio" name="language" value="pd"> PD</label>
+        <label><input type="radio" name="language" value="af"> AF</label>
+      </div>
+    </div>
+
+    <!-- Preprocessing Section -->
+    <div class="section">
+      <label class="title">Preprocessing:</label>
+      <div class="options">
+        <label><input type="radio" name="preprocessing" value="raw">
+          Raw</label>
+        <label><input type="radio" name="preprocessing" value="binary">
+          Binary</label>
+      </div>
+    </div>
+
+    <!-- ICL Section -->
+    <div class="section">
+      <label class="title">ICL:</label>
+      <div class="options">
+        <label><input type="radio" name="icl" value="no_icl"> No
+          ICL</label>
+        <label><input type="radio" name="icl" value="stylesheet">
+          Stylesheet</label>
+        <label><input type="radio" name="icl"
+            value="stylesheet_with_samples"> Stylesheet with
+          Samples</label>
+      </div>
+    </div>
+    <hr>
+    <!-- Run Section -->
+    <div class="section">
+      <button name="runButton" id="runExp">Run Experiment</button>
+    </div>
+  </div>
+
+  <script src="menu.js"></script>
+</body>
+
+</html>
