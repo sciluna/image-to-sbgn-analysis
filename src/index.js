@@ -5,9 +5,8 @@ import cors from 'cors';
 import sharp from 'sharp';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import cytoscape from 'cytoscape';
-import convertSBGNtoCytoscape from 'sbgnml-to-cytoscape';
-import { runGPT } from './gpt.js'
+import { runGPT } from './gpt.js';
+import { analyze } from 'analysis.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -21,9 +20,9 @@ app.use(cors());
 
 app.post('/', async (req, res) => {
   let body = "";
-	req.on('data', data => {
-		body += data;
-	});
+  req.on('data', data => {
+    body += data;
+  });
 
   req.on('end', async () => {
     body = JSON.parse(body);
@@ -50,14 +49,17 @@ app.post('/', async (req, res) => {
       }
 
       let convertedSbgnml;
-      if(llm == "gpt-4o") {
+      if (llm == "gpt-4o") {
         convertedSbgnml = runGPT(imageContent, langauage, icl);
       } else {
         // convertedSbgnml = runGemini(imageContent, langauage, icl));
       }
 
-      let trueSbgnml= fs.readFileSync(inputPathSBGN, 'utf8');
-      let trueCyJSON = convertSBGNtoCytoscape(trueSbgnml);
+      let trueSbgnml = fs.readFileSync(inputPathSBGN, 'utf8');
+
+      // now we have both ground truth sbgn and converted sbgn, so let's compare them
+      analyze(convertedSbgnml, trueSbgnml);
+      
     });
 
   });
@@ -66,15 +68,15 @@ app.post('/', async (req, res) => {
 
 // convert png image to base64
 const readImage = (imgPath) => {
-	// read image file
-	let data = fs.readFileSync(imgPath);
+  // read image file
+  let data = fs.readFileSync(imgPath);
 
-	// convert image file to base64-encoded string
-	const base64Image = Buffer.from(data, 'binary').toString('base64');
+  // convert image file to base64-encoded string
+  const base64Image = Buffer.from(data, 'binary').toString('base64');
 
-	// combine all strings
-	const base64ImageStr = `data:image/png;base64,${base64Image}`;
-	return base64ImageStr;
+  // combine all strings
+  const base64ImageStr = `data:image/png;base64,${base64Image}`;
+  return base64ImageStr;
 };
 
 export { port, app }

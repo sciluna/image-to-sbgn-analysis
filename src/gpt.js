@@ -4,12 +4,12 @@ import { OpenAI } from 'openai';
 // Load environment variables
 config();
 
-const runGPT = function(imageContent, langauage, icl) {
+const runGPT = function (imageContent, langauage, icl) {
 
-	// Initialize OpenAI API
-	const client = new OpenAI({
-		apiKey: process.env.OPEN_API_KEY
-	});
+  // Initialize OpenAI API
+  const client = new OpenAI({
+    apiKey: process.env.OPEN_API_KEY
+  });
 
   async function main() {
     const response = await client.chat.completions.create({

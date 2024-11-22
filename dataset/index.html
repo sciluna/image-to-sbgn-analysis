@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+  <title>SBGN Dataset Generator</title>
+
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+
+  <!-- for testing with local version of cytoscape.js -->
+  <!--<script src="../cytoscape.js/build/cytoscape.js"></script>-->
+
+  <script src="https://unpkg.com/cytoscape@3.23.0/dist/cytoscape.min.js"></script>
+  <script src="https://raw.githack.com/hasanbalci/cytoscape-sbgn-stylesheet/master/build/bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
+
+  <style>
+    h1 {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    form {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .form-group {
+      margin: 10px 0;
+    }
+
+    label {
+      margin: 0;
+    }
+
+    input[type="number"] {
+      width: 60px;
+      text-align: center;
+    }
+
+    button {
+      padding: 5px 15px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #cy {
+      position: relative;
+      width: 600px;
+      height: 600px;
+      z-index: 999;
+      margin-top: 25px;
+      margin-right: auto;
+      margin-left: auto;
+      border: solid;
+      border-width: 2px;
+      border-color: gray;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>SBGN Dataset Generator</h1>
+
+  <form id="dataset-form">
+    <div class="form-group">
+      <label for="num-rows"># of rows:</label>
+      <input type="number" id="num-rows" name="num-rows" min="1" value="4" required>
+      &nbsp;&nbsp;
+      <label for="num-cols"># of cols:</label>
+      <input type="number" id="num-cols" name="num-cols" min="1" value="4" required>
+      &nbsp;&nbsp;
+      <label for="num-cols"># of samples:</label>
+      <input type="number" id="num-samples" name="num-samples" min="1" value="1" required>
+    </div>
+    <button type="button" id="generate-btn">Generate</button>
+  </form>
+
+  <div id="cy"></div>
+
+  <script
+    src="https://raw.githack.com/hasanbalci/cytoscape-sbgn-stylesheet/master/build/bundle.js"></script>
+  <script src="db-generator.js"></script>
+
+</body>
+
+</html>

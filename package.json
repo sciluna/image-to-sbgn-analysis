@@ -11,6 +11,8 @@
   "author": "Hasan Balci",
   "license": "MIT",
   "dependencies": {
+    "cytoscape": "^3.30.3", 
+    "cytoscape-sbgn-stylesheet": "https://github.com/hasanbalci/cytoscape-sbgn-stylesheet.git",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
