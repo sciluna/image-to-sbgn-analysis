@@ -76,8 +76,24 @@
       &nbsp;&nbsp;
       <label for="num-cols"># of samples:</label>
       <input type="number" id="num-samples" name="num-samples" min="1" value="1" required>
+      &nbsp;&nbsp;
+      <input type="radio" id="PD" name="language" value="PD">
+      <label for="PD">PD</label>
+      <input type="radio" id="AF" name="language" value="AF" checked="checked">
+      <label for="AF">AF</label><br><br>
     </div>
-    <button type="button" id="generate-btn">Generate</button>
+    <div>
+      <button type="button" id="generate-btn">Generate</button>
+      &nbsp;&nbsp;
+      <label for="samples">Samples:</label>
+      <select id="samples">
+        <option value="" disabled selected>Select sample</option>
+      </select>
+      &nbsp;&nbsp;
+      <button type="button" id="download" disabled>Download</button>
+      <input type="checkbox" id="singleOrAll" name="singleOrAll" value="singleOrAll">
+      <label for="singleOrAll">All</label><br>
+    </div>
   </form>
 
   <div id="cy"></div>
