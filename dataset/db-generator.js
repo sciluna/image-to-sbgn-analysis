@@ -19,9 +19,10 @@ document.getElementById("generate-btn").addEventListener("click", function () {
   let rows = parseInt(document.getElementById("num-rows").value);
   let cols = parseInt(document.getElementById("num-cols").value);
   let numOfSamples = parseInt(document.getElementById("num-samples").value);
+  let language = document.getElementById("AF").checked ? "AF" : "PD";
 
   for (let i = 1; i < numOfSamples + 1; i++) {
-    let {pngData, jsonData} = generate(rows, cols, i);  // generate sample
+    let {pngData, jsonData} = generate(rows, cols, language);  // generate sample
     generatedPNGs.push(pngData);
     generatedJSONs.push(jsonData);
     // add sample option
@@ -34,6 +35,7 @@ document.getElementById("generate-btn").addEventListener("click", function () {
   selectElement.value = "sample1";
   selectElement.dispatchEvent(new Event('change'));
   document.getElementById("download").disabled = false;
+  cy.fit(cy.elements(), 30);
 });
 
 document.getElementById("samples").addEventListener("change", function () {
@@ -41,6 +43,7 @@ document.getElementById("samples").addEventListener("change", function () {
   let selectedIndex = parseInt(selectedSample.substring(6)) - 1;
   cy.elements().remove();
   cy.json({elements: generatedJSONs[selectedIndex].elements});
+  cy.fit(cy.elements(), 30);
 });
 
 document.getElementById("download").addEventListener("click", function () {
@@ -64,16 +67,21 @@ document.getElementById("download").addEventListener("click", function () {
   }
 });
 
-let generate = function (rows, cols, index) {
+let generate = function (rows, cols, language) {
   cy.elements().remove();
+
   // generate grid and add basic nodes
-  let grid = addBasicNodes(rows, cols, cy);
+  let grid = addBasicNodes(rows, cols, cy, language);
 
-  // add logical operators
-  addRandomLogicalNode(grid, cy);
-
-  // add random edges
-  addRandomEdges(grid, cy);
+  if (language == "AF") {
+    addRandomLogicalNodeAF(grid, cy);
+    addRandomEdgesAF(grid, cy);  // add random edges
+  }
+  else {  // PD
+    addProcessNodes(grid, cy);
+    addRandomLogicalNodePD(grid, cy);
+    addRandomEdgesPD(grid, cy);
+  }
 
   // find disconnected components and remove elements not in the largest one
   let components = cy.elements().components();
@@ -81,6 +89,12 @@ let generate = function (rows, cols, index) {
     return currentArray.length > maxArray.length ? currentArray : maxArray;
   }, []);
   cy.elements().diff(maxLengthComponent).left.remove();
+
+  addCompartment(grid, cy);
+
+  if (language == "PD") {
+    addComplexes(grid, cy);
+  }
 
   cy.fit(cy.elements(), 30);
   let png = cy.png({ full: false, bg: "white" });
@@ -90,7 +104,7 @@ let generate = function (rows, cols, index) {
 };
 
 // function to add random edges using BFS
-let addBasicNodes = function (rows, cols, cy) {
+let addBasicNodes = function (rows, cols, cy, language) {
   let grid = [];
 
   // fill grid with nodes
@@ -99,19 +113,45 @@ let addBasicNodes = function (rows, cols, cy) {
     for (let j = 0; j < cols; j++) {
       let rand1 = Math.random();
       // if there will be a node or not in the grid point
-      if (rand1 < 0.6) {
-        let rand2 = Math.random();
-        let nodeClass = "";
-        // decide node class
-        if (rand2 < 0.9) {
-          nodeClass = "biological activity";
-          grid[i][j] = { type: "B", node: undefined };
-        } else {
-          nodeClass = "phenotype";
-          grid[i][j] = { type: "P", node: undefined };
+      if (rand1 < 0.5) {
+        if (language == "AF") {
+          let rand2 = Math.random();
+          let nodeClass = "";
+          // decide node class
+          if (rand2 < 0.9) {
+            nodeClass = "biological activity";
+            grid[i][j] = { type: "B", node: undefined };
+          } else {
+            nodeClass = "phenotype";
+            grid[i][j] = { type: "P", node: undefined };
+          }
+          let newNode = cy.add({ group: 'nodes', data: { class: nodeClass, label: setLabel(nodeClass), "stateVariables": [], "unitsOfInformation": [] }, position: { x: j * 200, y: i * 200 } }); // add node
+          grid[i][j].node = newNode;
+        } else if (language == "PD") {
+          let rand2 = Math.random();
+          let nodeClass = "";
+          if (rand2 < 0.35) {
+            nodeClass = "macromolecule";
+            grid[i][j] = { type: "EPN", node: undefined };
+          } else if (rand2 >= 0.35 && rand2 < 0.7) {
+            nodeClass = "simple chemical";
+            grid[i][j] = { type: "EPN", node: undefined };
+          } else if (rand2 >= 0.7 && rand2 < 0.8) {
+            nodeClass = "unspecified entity";
+            grid[i][j] = { type: "EPN", node: undefined };
+          } else if (rand2 >= 0.8 && rand2 < 0.9) {
+            nodeClass = "nucleic acid feature";
+            grid[i][j] = { type: "EPN", node: undefined };
+          } else if (rand2 >= 0.9 && rand2 < 0.95) {
+            nodeClass = "perturbing agent";
+            grid[i][j] = { type: "EPN", node: undefined };
+          } else if (rand2 >= 0.95 && rand2 < 1) {
+            nodeClass = "source and sink";
+            grid[i][j] = { type: "EPN", node: undefined };
+          }
+          let newNode = cy.add({ group: 'nodes', data: { class: nodeClass, label: setLabel(nodeClass), "stateVariables": [], "unitsOfInformation": [] }, position: { x: j * 200, y: i * 200 } }); // add node
+          grid[i][j].node = newNode;
         }
-        let newNode = cy.add({ group: 'nodes', data: { class: nodeClass, label: setLabel(nodeClass), "stateVariables": [], "unitsOfInformation": [] }, position: { x: j * 200, y: i * 200 } }); // add node
-        grid[i][j].node = newNode;
       } else {
         grid[i][j] = { type: "E", node: undefined };
       }
@@ -120,14 +160,77 @@ let addBasicNodes = function (rows, cols, cy) {
   return grid;
 };
 
-// function to add random logical operators
-let addRandomLogicalNode = function (grid, cy) {
+// function to add process nodes and adjacent edges
+let addProcessNodes = function (grid, cy) {
   const rows = grid.length;
   const cols = grid[0].length;
-  const logicalNodeClasses = ["and", "or", "not", "delay"];
-  const logicalNodeClass = logicalNodeClasses[Math.floor(Math.random() * logicalNodeClasses.length)];
-  const edgeClasses = ["positive influence", "negative influence", "unknown influence", "necessary stimulation"];
-  const edgeClass = edgeClasses[Math.floor(Math.random() * edgeClasses.length)];
+  let processClasses = ["process", "omitted process", "uncertain process"];
+  let modulationClasses = ["modulation", "stimulation", "catalysis", "inhibition", "necessary stimulation"];
+
+  const emptyCells = [];
+  // find empty places
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      if (grid[y][x].type == "E") {
+        emptyCells.push({ x, y });
+      }
+    }
+  }
+
+  // directions
+  const directions = [
+    { dx: 0, dy: -1 }, // up
+    { dx: 1, dy: 0 },  // right
+    { dx: 0, dy: 1 },  // down
+    { dx: -1, dy: 0 }, // left
+  ];
+
+  for (let i = 0; i < emptyCells.length; i++) {
+    const { x, y } = { x: emptyCells[i].x, y: emptyCells[i].y };
+    let possibleIncomers = [];
+    let possibleOutgoers = [];
+    for (const { dx, dy } of directions) {
+      let newX = x + dx;
+      let newY = y + dy;
+
+      if (newX >= 0 && newX < cols && newY >= 0 && newY < rows && grid[newY][newX].type == "EPN") {
+        possibleIncomers.push(grid[newY][newX].node);
+      }
+      if (newX >= 0 && newX < cols && newY >= 0 && newY < rows && grid[newY][newX].type == "EPN" && grid[newY][newX].node.data("class") != "perturbing agent") {
+        possibleOutgoers.push(grid[newY][newX].node);
+      }
+    }
+    if (possibleIncomers.length > 1 && possibleOutgoers.length > 1) {
+      const matchingElements = possibleIncomers.filter(item => item.data("class") === "perturbing agent");
+      const nonMatchingElements = possibleIncomers.filter(item => item.data("class") !== "perturbing agent");
+      possibleIncomers = nonMatchingElements.concat(matchingElements);
+      let random = Math.random();
+      let processClass = random < 0.8 ? processClasses[0] : (random < 0.9 ? processClasses[1] : processClasses[2]);
+      let newNode = cy.add({ group: 'nodes', data: { class: processClass, label: setLabel(processClass), "stateVariables": [], "unitsOfInformation": [] }, position: { x: emptyCells[i].x * 200, y: emptyCells[i].y * 200 } }); // add process node
+      grid[emptyCells[i].y][emptyCells[i].x] = { type: "PN", node: newNode };
+      let newEdge1 = cy.add({ group: 'edges', data: { class: "consumption", source: possibleIncomers[0].id(), target: newNode.id() } }); // add consumption arc
+      let newEdge2 = cy.add({ group: 'edges', data: { class: "production", source: newNode.id(), target: possibleOutgoers[1].id() } }); // add production arc
+      for (let j = 2; j < possibleIncomers.length; j++) {
+        let modulationClass = modulationClasses[Math.floor(Math.random() * modulationClasses.length)];
+        if(possibleIncomers[j].data("class") != "source and sink") {
+          let newEdge3 = cy.add({ group: 'edges', data: { class: modulationClass, source: possibleIncomers[j].id(), target: newNode.id() } }); // add modulation arc
+        }
+      }
+    }
+    possibleIncomers = [];
+    possibleOutgoers = [];
+  }
+
+}
+
+// function to add random logical operators to AF
+let addRandomLogicalNodeAF = function (grid, cy) {
+  const rows = grid.length;
+  const cols = grid[0].length;
+  let logicalNodeClasses = ["and", "or", "not", "delay"];
+  let edgeClasses = ["positive influence", "negative influence", "unknown influence", "necessary stimulation"];
+  let logicalNodeClass = logicalNodeClasses[Math.floor(Math.random() * logicalNodeClasses.length)];
+  let edgeClass = edgeClasses[Math.floor(Math.random() * edgeClasses.length)];
   const emptyCells = [];
   // find empty places
   for (let y = 0; y < rows; y++) {
@@ -181,8 +284,74 @@ let addRandomLogicalNode = function (grid, cy) {
   }
 };
 
+// function to add random logical operators to PD
+let addRandomLogicalNodePD = function (grid, cy) {
+  const rows = grid.length;
+  const cols = grid[0].length;
+  let logicalNodeClasses = ["and", "or", "not"];
+  let modulationClasses = ["modulation", "stimulation", "catalysis", "inhibition", "necessary stimulation"];
+  let logicalNodeClass = logicalNodeClasses[Math.floor(Math.random() * logicalNodeClasses.length)];
+  let modulationClass = modulationClasses[Math.floor(Math.random() * modulationClasses.length)];
+
+  const emptyCells = [];
+  // find empty places
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      if (grid[y][x].type == "E") {
+        emptyCells.push({ x, y });
+      }
+    }
+  }
+  // Shuffle the empty cells
+  emptyCells.sort(() => Math.random() - 0.5);
+
+  // directions
+  const directions = [
+    { dx: 0, dy: -1 }, // up
+    { dx: 1, dy: 0 },  // right
+    { dx: 0, dy: 1 },  // down
+    { dx: -1, dy: 0 }, // left
+  ];
+
+  // select the first empty cell that has appropriate neighbors as the logical node position
+  let selectedIndex = -1;
+  let neighborsEPN = [];
+  let neighborsProcess = [];
+  let canAddLN = false;
+  for (let i = 0; i < emptyCells.length; i++) {
+    const { x, y } = { x: emptyCells[i].x, y: emptyCells[i].y };
+    for (const { dx, dy } of directions) {
+      let newX = x + dx;
+      let newY = y + dy;
+
+      if (newX >= 0 && newX < cols && newY >= 0 && newY < rows && grid[newY][newX].type == "EPN" && grid[newY][newX].node.data("class") != "source and sink") {
+        neighborsEPN.push(grid[newY][newX].node);
+      } else if (newX >= 0 && newX < cols && newY >= 0 && newY < rows && grid[newY][newX].type == "PN") {
+        neighborsProcess.push(grid[newY][newX].node);
+      }
+    }
+    if (((logicalNodeClass == "and" || logicalNodeClass == "or") && (neighborsEPN.length > 1 && neighborsProcess.length > 0)) || (logicalNodeClass == "not" && (neighborsEPN.length > 0 && neighborsProcess.length > 0))) {
+      canAddLN = true;
+      selectedIndex = i;
+      break;
+    }
+    neighborsEPN = [];
+    neighborsProcess = [];
+  }
+
+  if (canAddLN && Math.random() < 0.5) {
+    let newNode = cy.add({ group: 'nodes', data: { class: logicalNodeClass, "stateVariables": [], "unitsOfInformation": [] }, position: { x: emptyCells[selectedIndex].x * 200, y: emptyCells[selectedIndex].y * 200 } }); // add logical node
+    grid[emptyCells[selectedIndex].y][emptyCells[selectedIndex].x] = { type: "L", node: newNode };
+    let newEdge1 = cy.add({ group: 'edges', data: { class: "logic arc", source: neighborsEPN[0].id(), target: newNode.id() } }); // add first logic arc
+    let newEdge2 = cy.add({ group: 'edges', data: { class: modulationClass, source: newNode.id(), target: neighborsProcess[0].id() } }); // add modulation arc that is connected to process
+    if (logicalNodeClass == "and" || logicalNodeClass == "or") {
+      let newEdge3 = cy.add({ group: 'edges', data: { class: "logic arc", source: neighborsEPN[1].id(), target: newNode.id() } });  // add second logical arc if 'and' or 'or'
+    }
+  }
+};
+
 // function to add random edges using BFS
-let addRandomEdges = function (grid, cy) {
+let addRandomEdgesAF = function (grid, cy) {
   const rows = grid.length;
   const cols = grid[0].length;
   const edgeClasses = ["positive influence", "negative influence", "unknown influence", "necessary stimulation"];
@@ -256,7 +425,232 @@ let addRandomEdges = function (grid, cy) {
     }
   }
 
+  // add extra edges 
+  startNodes.sort(() => Math.random() - 0.5);
+  const mainDirections = [
+    { dx: 0, dy: -1 }, // up
+    { dx: 1, dy: 0 },  // right
+    { dx: 0, dy: 1 },  // down
+    { dx: -1, dy: 0 }, // left
+  ];
+  for (let i = 0; i < Math.ceil(startNodes.length / 4); i++) {
+    const { x, y } = startNodes[i];
+    for (const { dx, dy } of mainDirections) {
+      let newX = x + dx;
+      let newY = y + dy;
+      if (newX >= 0 && newX < cols && newY >= 0 && newY < rows && grid[newY][newX].type == "B") {
+        let edgeExist = grid[newY][newX].node.edgesWith(grid[y][x].node).length > 0;
+        if (!edgeExist) {
+          const edgeClass = edgeClasses[Math.floor(Math.random() * edgeClasses.length)];
+          let newEdge = cy.add({ group: 'edges', data: { class: edgeClass, source: grid[newY][newX].node.id(), target: grid[y][x].node.id() } }); // add edge
+          break;
+        }
+      }
+    }
+  }
   return edges;
+};
+
+// function to add random edges between process and EPNs
+let addRandomEdgesPD = function (grid, cy) {
+  const rows = grid.length;
+  const cols = grid[0].length;
+  let edgeClasses = ["consumption", "production", "modulation", "stimulation", "catalysis", "inhibition", "necessary stimulation"];
+  const processCells = [];
+  // find process places
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      if (grid[y][x].type == "PN") {
+        processCells.push({ x, y });
+      }
+    }
+  }
+
+  // Shuffle the process cells
+  processCells.sort(() => Math.random() - 0.5);
+
+  // directions
+  const directions = [
+    { dx: 1, dy: -1 }, // up-right
+    { dx: 1, dy: 1 },  // down-right
+    { dx: -1, dy: 1 }, // down-left
+    { dx: -1, dy: -1 } // up-left
+  ];
+
+  
+  for (let i = 0; i <  Math.ceil(processCells.length / 4); i++) {
+    let neighborsEPN = [];
+    const { x, y } = { x: processCells[i].x, y: processCells[i].y };
+    for (const { dx, dy } of directions) {
+      let newX = x + dx;
+      let newY = y + dy;
+
+      if (newX >= 0 && newX < cols && newY >= 0 && newY < rows && grid[newY][newX].type == "EPN" && grid[newY][newX].node.data("class") != "source and sink") {
+        neighborsEPN.push(grid[newY][newX].node);
+      }
+    }
+    if (neighborsEPN.length > 0 && Math.random() < 0.75) {
+      for (let j = 0; j < neighborsEPN.length; j++) {
+        let edgeClass = edgeClasses[Math.floor(Math.random() * edgeClasses.length)];
+        if (edgeClass == "production") {
+          let newEdge1 = cy.add({ group: 'edges', data: { class: edgeClass, source: grid[y][x].node.id(), target: neighborsEPN[j].id() } }); // add production arc
+        } else {
+          let newEdge1 = cy.add({ group: 'edges', data: { class: edgeClass, source: neighborsEPN[j].id(), target: grid[y][x].node.id() } }); // add other types of arc
+        }
+      }
+    }
+  }
+}
+
+///  --- Complexes will be added only for PD --- ///
+// function to replace some nodes to complexes
+let addComplexes = function (grid, cy) {
+  const rows = grid.length;
+  const cols = grid[0].length;
+
+  // first try to add association and dissociation
+  const processNodes = cy.nodes().filter(node => {
+    if (node.data("class") == "process" || node.data("class") == "omitted process" || node.data("class") == "uncertain process") {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
+  // association
+  let isAssociationAdded = false;
+  for (let i = 0; i < processNodes.length; i++) {
+    let processNode = processNodes[i];
+    let incomers = cy.collection();
+    let outgoers = cy.collection();
+    processNode.incomers().edges().forEach((edge, i) => {
+      if(edge.data("class") == "consumption" && (processNode.incomers().nodes()[i].data("class") == "macromolecule" || processNode.incomers().nodes()[i].data("class") == "simple chemical")) {
+        incomers.merge(edge);
+      }
+    });
+    processNode.outgoers().edges().forEach((edge, i) => {
+      if(edge.data("class") == "production" && (processNode.outgoers().nodes()[i].data("class") == "macromolecule" || processNode.outgoers().nodes()[i].data("class") == "simple chemical")) {
+        outgoers.merge(edge);
+      }
+    });
+    if(incomers.length > 1 && outgoers.length > 0) {  // we can replace with association
+      isAssociationAdded = true;
+      processNode.data("class", "association");
+      let incomerNodes = incomers.sources();
+      let outgoingNode = outgoers.target()[0];
+      outgoingNode.data("label", incomerNodes[0].data("label"));
+      outgoingNode.data("class", incomerNodes[0].data("class"));
+      let parent = outgoingNode.parent();
+      let newNode1 = cy.add({ group: 'nodes', data: { class: incomerNodes[1].data("class"), label: incomerNodes[1].data("label"), "stateVariables": [], "unitsOfInformation": [] }, position: { x: outgoingNode.position().x, y: outgoingNode.position().y} }); // add second node for complex
+      let newNode2 = cy.add({ group: 'nodes', data: { class: "complex", label: setLabel("complex"), "stateVariables": [], "unitsOfInformation": [] }, position: { x: outgoingNode.position().x, y: outgoingNode.position().y } }); // add complex
+      if(parent.length > 0) {
+        newNode2.move({parent: parent.id()});
+      }
+      outgoingNode.move({parent: newNode2.id()});
+      newNode1.move({parent: newNode2.id()});
+      outgoingNode.shift({x: 0, y: -(outgoingNode.height()/2 + 12)});
+      newNode1.shift({x: 0, y: (outgoingNode.height()/2 + 12)});
+      outgoingNode.incomers().edges().move({target:newNode2.id()});
+      outgoingNode.outgoers().edges().move({source:newNode2.id()});
+    }
+  }
+  // try dissociation
+  let isDissociationAdded = false;
+  if (!isAssociationAdded) {
+    for (let i = 0; i < processNodes.length; i++) {
+      let processNode = processNodes[i];
+      let incomers = cy.collection();
+      let outgoers = cy.collection();
+      processNode.incomers().edges().forEach((edge, i) => {
+        if(edge.data("class") == "consumption" && (processNode.incomers().nodes()[i].data("class") == "macromolecule" || processNode.incomers().nodes()[i].data("class") == "simple chemical")) {
+          incomers.merge(edge);
+        }
+      });
+      processNode.outgoers().edges().forEach((edge, i) => {
+        if(edge.data("class") == "production" && (processNode.outgoers().nodes()[i].data("class") == "macromolecule" || processNode.outgoers().nodes()[i].data("class") == "simple chemical")) {
+          outgoers.merge(edge);
+        }
+      });
+      if(incomers.length > 0 && outgoers.length > 1) {  // we can replace with association
+        isDissociationAdded = true;
+        processNode.data("class", "dissociation");
+        let incomerNode = incomers.sources()[0];
+        let outgoingNodes = outgoers.targets();
+        incomerNode.data("label", outgoingNodes[0].data("label"));
+        incomerNode.data("class", outgoingNodes[0].data("class"));
+        let parent = incomerNode.parent();
+        let newNode1 = cy.add({ group: 'nodes', data: { class: outgoingNodes[1].data("class"), label: outgoingNodes[1].data("label"), "stateVariables": [], "unitsOfInformation": [] }, position: { x: incomerNode.position().x, y: incomerNode.position().y} }); // add second node for complex
+        let newNode2 = cy.add({ group: 'nodes', data: { class: "complex", label: setLabel("complex"), "stateVariables": [], "unitsOfInformation": [] }, position: { x: incomerNode.position().x, y: incomerNode.position().y } }); // add complex
+        if(parent.length > 0) {
+          newNode2.move({parent: parent.id()});
+        }
+        incomerNode.move({parent: newNode2.id()});
+        newNode1.move({parent: newNode2.id()});
+        incomerNode.shift({x: 0, y: -(incomerNode.height()/2 + 12)});
+        newNode1.shift({x: 0, y: (incomerNode.height()/2 + 12)});
+        incomerNode.incomers().edges().move({target:newNode2.id()});
+        incomerNode.outgoers().edges().move({source:newNode2.id()});
+      }
+    }
+  }
+
+  if (!isAssociationAdded && !isDissociationAdded) {
+    let candidates = cy.edges("[class = 'modulation']");
+    let selectedNode;
+    if (candidates.length > 0) {
+      selectedNode = candidates[0].source();
+    }
+    if(selectedNode && (selectedNode.data("class") == "macromolecule" || selectedNode.data("class") == "simple chemical")) {
+      let parent = selectedNode.parent();
+      let newNode1 = cy.add({ group: 'nodes', data: { class: "complex", label: setLabel("complex"), "stateVariables": [], "unitsOfInformation": [] }, position: { x: selectedNode.position().x, y: selectedNode.position().y } }); // add complex
+      selectedNode.incomers().edges().move({target:newNode1.id()});
+      selectedNode.outgoers().edges().move({source:newNode1.id()});
+      let newNode2 = cy.add({ group: 'nodes', data: { class: selectedNode.data("class"), label: setLabel(selectedNode.data("class")), "stateVariables": [], "unitsOfInformation": [] }, position: { x: selectedNode.position().x, y: selectedNode.position().y} }); // add second node for complex
+      let newNode3 = cy.add({ group: 'nodes', data: { class: selectedNode.data("class"), label: setLabel(selectedNode.data("class")), "stateVariables": [], "unitsOfInformation": [] }, position: { x: selectedNode.position().x, y: selectedNode.position().y} }); // add second node for complex
+      if(parent.length > 0) {
+        newNode1.move({parent: parent.id()});
+      }
+      newNode2.move({parent: newNode1.id()});
+      newNode3.move({parent: newNode1.id()});
+      newNode2.shift({x: 0, y: -(newNode2.height()/2 + 12)});
+      newNode3.shift({x: 0, y: (newNode3.height()/2 + 12)});
+      selectedNode.remove();
+    }
+  }
+
+  cy.fit(cy.elements(), 30);
+};
+
+// function to add compartment
+let addCompartment = function (grid, cy) {
+  const rand1 = Math.random();
+  if (rand1 < 0.5) { // add a compartment
+    const rand2 = Math.random();
+    if (rand2 < 0.5) {  // add compartment to whole graph
+      let newNode = cy.add({ group: 'nodes', data: { class: "compartment", label: setLabel("compartment"), "stateVariables": [], "unitsOfInformation": [] }, position: { x: (grid.length - 1) * 200 / 2, y: (grid[0].length - 1) * 200 / 2 } }); // add compartment node
+      cy.nodes().move({parent: newNode.id()});
+      if(newNode.descendants().length == 0) {
+        newNode.remove();
+      }
+    }
+    else {
+      let horizontal = {start: Math.floor(Math.random() * Math.ceil(grid[0].length / 2)), end: Math.floor(Math.floor(grid[0].length / 2) + Math.random() * Math.ceil(grid[0].length / 2))};
+      let vertical = {start: Math.floor(Math.random() * Math.ceil(grid.length / 2)), end: Math.floor(Math.floor(grid.length / 2) + Math.random() * Math.ceil(grid.length / 2))};
+      let newNode = cy.add({ group: 'nodes', data: { class: "compartment", label: setLabel("compartment"), "stateVariables": [], "unitsOfInformation": [] }, position: { x: (grid.length - 1) * 200 / 2, y: (grid[0].length - 1) * 200 / 2 } }); // add compartment node
+      for(let i = vertical.start; i <= vertical.end; i++ ) {
+        for(let j = horizontal.start; j <= horizontal.end; j++ ) {
+          if (grid[j][i].type != "E") {
+            grid[j][i].node.move({parent: newNode.id()});
+          }
+        }
+      }
+      if(newNode.descendants().length == 0) {
+        newNode.remove();
+      }
+    }
+  }
+
+  cy.fit(cy.nodes(), 30);
 };
 
 // image content is base64 data and imageType is png/jpg
@@ -312,10 +706,14 @@ let saveJSON = function (jsonContent, filename) {
 };
 
 let setLabel = function (nodeClass) {
-  if (nodeClass == "biological activity") {
+  if (nodeClass == "biological activity" || nodeClass == "macromolecule" || nodeClass == "simple chemical" || nodeClass == "unspecified entity" || nodeClass == "nucleic acid feature" || nodeClass == "perturbing agent") {
     return geneList[Math.floor(Math.random() * geneList.length)];
-  } else {  // phenotype
+  } else if (nodeClass == "phenotype") {  // phenotype
     return phenotypeList[Math.floor(Math.random() * phenotypeList.length)];
+  } else if (nodeClass == "compartment") {  // phenotype
+    return compartmentList[Math.floor(Math.random() * compartmentList.length)];
+  } else {
+    return "";
   }
 };
 
@@ -325,3 +723,6 @@ let geneList = geneListRaw.filter(str => str.length <= 7); // returns 817 genes
 
 let phenotypeList = ["Apoptosis", "Necrosis", "Autophagy", "DNA repair", "Myogenesis", "Cytokine\nstorm",
   "Protein\naggregation", "Atrophy", "DNA\ndamage\nresponse", "ER stress", "Hypertrophy", "Fibrosis", "Tumor\nregression", "Insulin\nresistance", "Lipid\naccumulation", "Immune\nsuppression", "Autoimmune\nreaction", "Angiogenesis", "Cell\ncycle\narrest", "Cellular\nsenescence", "Metastasis", "Protein\nmisfolding", "Acidosis", "Hypoxia", "Oxidative\nstress", "Inflammation", "Immune\nsuppression", "Cell\nproliferation", "Cytotoxicity", "Lipid\naccumulation"]; // 30 phenotypes
+
+let compartmentList = ["Cytoplasm", "Nucleus", "Mitochondria", "ER", "Muscle cytosol", "Synaptic cleft",
+  "Synaptic button", "Neuron", "Nucleoplasm", "Cytosol", "Juxtanuclear inclusion", "Extracellular", "Peroxisome", "Inner membrane", "Outer membrane"]; // 15 compartments
