@@ -164,7 +164,7 @@ let addBasicNodes = function (rows, cols, cy, language) {
 let addProcessNodes = function (grid, cy) {
   const rows = grid.length;
   const cols = grid[0].length;
-  let processClasses = ["process", "omitted process", "uncertain process"];
+  let processClasses = ["process", "omitted process", "uncertain process", "phenotype"];
   let modulationClasses = ["modulation", "stimulation", "catalysis", "inhibition", "necessary stimulation"];
 
   const emptyCells = [];
@@ -200,12 +200,24 @@ let addProcessNodes = function (grid, cy) {
         possibleOutgoers.push(grid[newY][newX].node);
       }
     }
-    if (possibleIncomers.length > 1 && possibleOutgoers.length > 1) {
+    let random = Math.random();
+    let processClass = random < 0.7 ? processClasses[0] : (random < 0.8 ? processClasses[1] : (random < 0.9 ? processClasses[2] : processClasses[3]));
+    if (processClass == "phenotype" && possibleIncomers.length > 0) {
+      let count = 0;
+      while (count < possibleIncomers.length) {
+        if (possibleIncomers[count].data("class") != "source and sink") {
+          let newNode = cy.add({ group: 'nodes', data: { class: processClass, label: setLabel("phenotype"), "stateVariables": [], "unitsOfInformation": [] }, position: { x: emptyCells[i].x * 200, y: emptyCells[i].y * 200 } }); // add phenotype node
+          let modulationClass = modulationClasses[Math.floor(Math.random() * modulationClasses.length)];
+          let newEdge3 = cy.add({ group: 'edges', data: { class: modulationClass, source: possibleIncomers[count].id(), target: newNode.id() } }); // add modulation arc
+          break;
+        }
+        count++;
+      }
+    }
+    else if (possibleIncomers.length > 1 && possibleOutgoers.length > 1) {
       const matchingElements = possibleIncomers.filter(item => item.data("class") === "perturbing agent");
       const nonMatchingElements = possibleIncomers.filter(item => item.data("class") !== "perturbing agent");
       possibleIncomers = nonMatchingElements.concat(matchingElements);
-      let random = Math.random();
-      let processClass = random < 0.8 ? processClasses[0] : (random < 0.9 ? processClasses[1] : processClasses[2]);
       let newNode = cy.add({ group: 'nodes', data: { class: processClass, label: setLabel(processClass), "stateVariables": [], "unitsOfInformation": [] }, position: { x: emptyCells[i].x * 200, y: emptyCells[i].y * 200 } }); // add process node
       grid[emptyCells[i].y][emptyCells[i].x] = { type: "PN", node: newNode };
       let newEdge1 = cy.add({ group: 'edges', data: { class: "consumption", source: possibleIncomers[0].id(), target: newNode.id() } }); // add consumption arc
