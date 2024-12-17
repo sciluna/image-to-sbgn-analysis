@@ -760,7 +760,7 @@ const nucleicAcidFeatureList = [
 ];
 
 const unspecifiedEntityList = [
-  "unfolded\nprotein", "p-T-AKT", "AKT", "GSK3", "iNOS", "CaM", "receptors", "antigen", "gluten", "Th2", "CD4+", "DNA Damage", "EDCs", "mRNA", "e1AD", "e3AD", "m1AD", "n2AD", "CO2", "MMSO4", "m8GN", "Ub"
+  "unfolded\nprotein", "p-T-AKT", "AKT", "GSK3", "iNOS", "CaM", "receptors", "antigen", "gluten", "Th2", "CD4+", "DNA\ndamage", "EDCs", "mRNA", "e1AD", "e3AD", "m1AD", "n2AD", "CO2", "MMSO4", "m8GN", "Ub"
 ];
 
 const phenotypeList = ["Apoptosis", "Necrosis", "Autophagy", "DNA repair", "Myogenesis", "Cytokine\nstorm",

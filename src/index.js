@@ -5,8 +5,8 @@ import cors from 'cors';
 import sharp from 'sharp';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import { runGPT } from './gpt.js';
-import { analyze } from 'analysis.js';
+import { runLLM } from './llm.js';
+import { analyze } from './analysis.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -48,22 +48,14 @@ app.post('/', async (req, res) => {
         imageContent = `data:image/png;base64,${buffer.toString('base64')}`;
       }
 
-      let convertedSbgnml;
-      if (llm == "gpt-4o") {
-        convertedSbgnml = runGPT(imageContent, langauage, icl);
-      } else {
-        // convertedSbgnml = runGemini(imageContent, langauage, icl));
-      }
+      let convertedSbgnml = runLLM(llm, imageContent, langauage, icl);
 
       let trueSbgnml = fs.readFileSync(inputPathSBGN, 'utf8');
 
       // now we have both ground truth sbgn and converted sbgn, so let's compare them
-      analyze(convertedSbgnml, trueSbgnml);
-      
+      //analyze(convertedSbgnml, trueSbgnml); 
     });
-
   });
-
 });
 
 // convert png image to base64
