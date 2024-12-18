@@ -654,7 +654,7 @@ let addCompartment = function (grid, cy) {
       let newNode = cy.add({ group: 'nodes', data: { class: "compartment", label: setLabel("compartment"), "stateVariables": [], "unitsOfInformation": [] }, position: { x: (grid.length - 1) * 200 / 2, y: (grid[0].length - 1) * 200 / 2 } }); // add compartment node
       for(let i = vertical.start; i <= vertical.end; i++ ) {
         for(let j = horizontal.start; j <= horizontal.end; j++ ) {
-          if (grid[j][i].type != "E") {
+          if (grid[j][i].type != "E" && cy.nodes().intersection(grid[j][i].node).length > 0) {
             grid[j][i].node.move({parent: newNode.id()});
           }
         }
