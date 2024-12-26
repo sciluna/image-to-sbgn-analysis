@@ -1,7 +1,7 @@
 import cytoscape from 'cytoscape';
 import convertSBGNtoCytoscape from 'sbgnml-to-cytoscape';
 
-const analyze = function (convertedSbgnml, trueSbgnml) {
+const analyze = async function (convertedSbgnml, trueCyJSON) {
   
   let c, n, nc, e, ec, l = 0;
 
@@ -13,7 +13,6 @@ const analyze = function (convertedSbgnml, trueSbgnml) {
     console.log("sbgnml content is wrong.")
   }
   if (c === 1) {  // converted sbgnml is compalible
-    let trueCyJSON = convertSBGNtoCytoscape(trueSbgnml);
 
     let cy1 = cytoscape({
       styleEnabled: true,
@@ -26,6 +25,14 @@ const analyze = function (convertedSbgnml, trueSbgnml) {
     });
 
   }
+
+  return {c: "Yes",
+          n: "Yes",
+          nc: "No",
+          e: "No",
+          ec: "No",
+          l: "Yes",
+        };
 
 }
 

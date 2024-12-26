@@ -49,21 +49,22 @@ document.getElementById("samples").addEventListener("change", function () {
 document.getElementById("download").addEventListener("click", function () {
   let selectedSample = document.getElementById("samples").value;
   let selectedIndex = parseInt(selectedSample.substring(6)) - 1;
+  let language = document.getElementById("AF").checked ? "AF" : "PD";
   let downloadAll = document.getElementById("singleOrAll").checked;
   if ( downloadAll ) {
     generatedJSONs.forEach((jsonData, i) => {
-      saveJSON(jsonData, "sample" + (i+1) + ".json");
+      saveJSON(jsonData, "sample" + language + (i+1) + ".json");
     });
   } else {
-    saveJSON(generatedJSONs[selectedIndex], "sample" + (selectedIndex + 1) + ".json");
+    saveJSON(generatedJSONs[selectedIndex], "sample" + language + (selectedIndex + 1) + ".json");
   }
   if ( downloadAll ) {
     generatedPNGs.forEach(async (pngData, i) => {
-      saveAs(pngData, "sample" + (i+1) + ".png");
+      saveAs(pngData, "sample" + language + (i+1) + ".png");
       await new Promise(r => setTimeout(r, 1000)); 
     });
   } else {
-    saveAs(generatedPNGs[selectedIndex], "sample" + (selectedIndex + 1) + ".png");
+    saveAs(generatedPNGs[selectedIndex], "sample" + language + (selectedIndex + 1) + ".png");
   }
 });
 
@@ -97,10 +98,10 @@ let generate = function (rows, cols, language) {
   }
 
   cy.fit(cy.elements(), 30);
-  let png = cy.png({ full: false, bg: "white" });
-  let blobDataPNG = saveImage(png, "png");
+  let png = cy.png({ full: false, bg: "white", output: "blob" });
+  //let blobDataPNG = saveImage(png, "png");
   let jsonData = cy.json();
-  return { pngData: blobDataPNG, jsonData: jsonData };
+  return { pngData: png, jsonData: jsonData };
 };
 
 // function to add random edges using BFS
