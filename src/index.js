@@ -56,25 +56,26 @@ app.post('/', async (req, res) => {
         }
 
         try {
-          //let convertedSbgnml = await runLLM(llm, imageContent, language, icl, i);
-          let convertedSbgnml = undefined;
+          let convertedSbgnml = await runLLM(llm, imageContent, language, icl, i);
+          //let convertedSbgnml = undefined;
           // now we have both ground truth cy json and converted sbgn, so let's compare them
           let analysisResult = await analyze(convertedSbgnml, trueCyJSON);
-
           allResults[index].push(analysisResult);
+          console.log(allResults[0]);
+
           if (index == filenames.length - 1 && i == userCount) {
             let csvData = arrayToCsv(allResults, filenames);
             console.log(csvData);
             // Download the CSV file
-/*             fs.writeFile('output.csv', csvData, 'utf8', (err) => {
-              if (err) {
-                console.error('Error writing to file:', err);
-              } else {
-                console.log('CSV file saved successfully!');
-              }
-            }); */
+            /*             fs.writeFile('output.csv', csvData, 'utf8', (err) => {
+                          if (err) {
+                            console.error('Error writing to file:', err);
+                          } else {
+                            console.log('CSV file saved successfully!');
+                          }
+                        }); */
           }
-        } catch (error){
+        } catch (error) {
           console.log("Error!");
         }
       }
