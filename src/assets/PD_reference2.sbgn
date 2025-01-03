@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<sbgn xmlns="http://sbgn.org/libsbgn/0.2">
+  <map language="process description">
+    <glyph id="n1" class="complex">
+      <bbox x="586.7424719887955" y="153.64460784313727" w="73.25" h="43.25"/>
+      <glyph id="n2" class="macromolecule">
+        <label text="STAT1α"/>
+        <bbox x="593.3674719887955" y="160.26960784313727" w="60" h="30"/>
+      </glyph>
+    </glyph>
+    <glyph id="n3" class="complex">
+      <bbox x="679.75" y="309.75" w="86.5" h="98.875"/>
+      <glyph id="n4" class="complex">
+        <bbox x="686.375" y="316.375" w="73.25" h="43.25"/>
+        <glyph id="n5" class="macromolecule">
+          <label text="STAT1α"/>
+          <bbox x="693" y="323" w="60" h="30"/>
+        </glyph>
+      </glyph>
+      <glyph id="n6" class="nucleic acid feature">
+        <label text="IRF1-GAS"/>
+        <bbox x="694" y="372" w="60" h="30"/>
+      </glyph>
+    </glyph>
+    <glyph id="n7" class="nucleic acid feature">
+      <label text="IRF1-GAS"/>
+      <bbox x="802.3869047619047" y="161.61309523809524" w="60" h="30"/>
+    </glyph>
+    <glyph id="n8" class="nucleic acid feature">
+      <label text="IRF1"/>
+      <bbox x="874" y="375" w="60" h="30"/>
+    </glyph>
+    <glyph id="n9" class="association">
+      <bbox x="712.8571428571429" y="232.85714285714286" w="14.285714285714286" h="14.285714285714286"/>
+      <port id="n9.1" x="710" y="240"/>
+      <port id="n9.2" x="730" y="240"/>
+    </glyph>
+    <glyph id="n10" class="and">
+      <bbox x="813.2857142857143" y="457.2857142857143" w="21.42857142857143" h="21.42857142857143"/>
+      <port id="n10.1" x="809" y="468"/>
+      <port id="n10.2" x="839" y="468"/>
+    </glyph>
+    <glyph id="n11" class="process">
+      <bbox x="813.8571428571429" y="543.8571428571429" w="14.285714285714286" h="14.285714285714286"/>
+      <port id="n11.1" x="811" y="551"/>
+      <port id="n11.2" x="831" y="551"/>
+    </glyph>
+    <glyph id="n12" class="process">
+      <bbox x="926.8571428571429" y="625.8571428571429" w="14.285714285714286" h="14.285714285714286"/>
+      <port id="n12.1" x="924" y="633"/>
+      <port id="n12.2" x="944" y="633"/>
+    </glyph>
+    <glyph id="n13" class="empty set">
+      <bbox x="716" y="541" w="22" h="22"/>
+    </glyph>
+    <glyph id="n14" class="nucleic acid feature">
+      <label text="IRF1"/>
+      <bbox x="903" y="535" w="60" h="30"/>
+    </glyph>
+    <glyph id="n15" class="empty set">
+      <bbox x="844" y="625" w="22" h="22"/>
+    </glyph>
+    <glyph id="n16" class="macromolecule">
+      <label text="IRF1"/>
+      <bbox x="999" y="617" w="60" h="30"/>
+    </glyph>
+    <arc id="e1" class="consumption" source="n1" target="n9.1">
+      <start x="651.7934402163951" y="194.31106426242596"/>
+      <end x="711.1725029056332" y="234.08680119994716"/>
+    </arc>
+    <arc id="e2" class="consumption" source="n7" target="n9.1">
+      <start x="806.227311457841" y="191.36726657938937"/>
+      <end x="729.254528047773" y="234.78038932361977"/>
+    </arc>
+    <arc id="e3" class="production" source="n9.2" target="n3">
+      <start x="720.26735108621" y="250.62163586255443"/>
+      <end x="721.6612729384924" y="306.00098945218986"/>
+    </arc>
+    <arc id="e4" class="logic arc" source="n3" target="n10.1">
+      <start x="762.2670109317834" y="401.4918725446998"/>
+      <end x="813.370222485326" y="456.5479934077677"/>
+    </arc>
+    <arc id="e5" class="logic arc" source="n8" target="n10.1">
+      <start x="887.974358974359" y="405.625"/>
+      <end x="835.1875021815631" y="457.0921853729759"/>
+    </arc>
+    <arc id="e6" class="necessary stimulation" source="n10.2" target="n11">
+      <start x="823.4356095120095" y="483.6148035010712"/>
+      <end x="821.4969142421764" y="537.2520392997858"/>
+    </arc>
+    <arc id="e7" class="consumption" source="n13" target="n11.1">
+      <start x="738.6243422355499" y="551.8763367847282"/>
+      <end x="810.375" y="551.1130319148937"/>
+    </arc>
+    <arc id="e8" class="production" source="n11.2" target="n14">
+      <start x="831.625" y="550.9051339285714"/>
+      <end x="899.2501245540964" y="550.3013381736241"/>
+    </arc>
+    <arc id="e9" class="necessary stimulation" source="n14" target="n12">
+      <start x="933.1882530120482" y="565.625"/>
+      <end x="933.8343400817611" y="619.2502267861681"/>
+    </arc>
+    <arc id="e10" class="consumption" source="n15" target="n12.1">
+      <start x="866.6166269846285" y="635.5588622664065"/>
+      <end x="923.375" y="633.4034810126582"/>
+    </arc>
+    <arc id="e11" class="production" source="n12.2" target="n16">
+      <start x="944.625" y="632.8881578947369"/>
+      <end x="995.2501731158077" y="632.355261335623"/>
+    </arc>
+  </map>
+</sbgn>
