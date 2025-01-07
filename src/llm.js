@@ -11,7 +11,7 @@ const __dirname = dirname(__filename);
 // Load environment variables
 config();
 
-const runLLM = async function (llmType, imageContent, language, icl, i) {
+const runLLM = async function (llmType, imageContent, language, icl, resultFilename) {
   // Create the Token.js client
   const tokenjs = new TokenJS();
 
@@ -37,6 +37,7 @@ const runLLM = async function (llmType, imageContent, language, icl, i) {
     });
     let result = response.choices[0]["message"]["content"];
     try {
+      writeResult(result, resultFilename);
       result = result.replaceAll('```json', '');
       result = result.replaceAll('```', '');
       let sbgnmlText = JSON.parse(result).answer;
@@ -247,5 +248,15 @@ const secondSampleCommentPD = "This SBGN-PD diagram represents a pathway with 16
 const firstSampleCommentAF = "This SBGN-AF diagram represents a pathway with 5 nodes and 4 edges. 5 nodes include 4 'biological activity' and 1 'phenotype' nodes. 4 edges include 2 'positive influence' and 2 'necessary stimulation' edges. The biological activity 'increase in membrane potential' is connected to biological activity 'sodium channel activity' with a positive influence edge. The biological activity 'sodium channel activity' is connected to biological activity 'depolarization' with a necessary stimulation edge. The biological activity 'depolarization' is connected to biological activity 'potassium channel activity' with a positive influence edge. Finally, The biological activity 'potassium channel activity' is connected to phenotype 'repolarization' with a necessary stimulation edge. In the light of this information, generate the SBGNML for this hand-drawn SBGN diagram. Make sure that each element in the resulting SBGNML has the correct tag, this is very inportant. Please also make sure that each glyph has a label and bbox subtags and each arc has source and target defined as attribute inside arc tag (not as subtags). Take your time and act with careful consideration. Do NOT enclose the JSON output in markdown code blocks like ```json and make sure that you are returning a valid JSON (this is important).";
 
 const secondSampleCommentAF = "This SBGN-AF diagram represents a pathway with 7 nodes and 7 edges. 7 nodes include 5 'biological activity', 1 'phenotype' and 1 'and' nodes. 7 edges include 2 'positive influence', 2 'negative influence', 1 'necessary stimulation' and 2 'logic arc' edges. The biological activity 'RAS' and biological activity 'TGF beta' are inputs to the 'and' node via logic arcs. 'and' node is connected to biological activity 'Mutant p53/P-Smad' with a positive influence edge. The biological activity 'Mutant p53/P-Smad' negatively influence biological activity 'p63' (see negative influence edge where 'Mutant p53/P-Smad' is source and 'p63' is target). The biological activity 'p63' is connected to biological activity 'Metastatic suppressor genes activity' with a necessary stimulation edge. The biological activity 'Metastatic suppressor genes activity' negatively influence phenotype 'Pro-invasion migratin metastasis gene expression platform' (see negative influence edge where 'Metastatic suppressor genes activity' is source and 'Pro-invasion migratin metastasis gene expression platform' is target). Finally, biological activity 'TGF beta' positively influence biological activity 'Pro-invasion migratin metastasis gene expression platform' (see positive influence edge where 'TGF beta' is source and 'Pro-invasion migratin metastasis gene expression platform' is target). In the light of this information, generate the SBGNML for this hand-drawn SBGN diagram. Make sure that each element in the resulting SBGNML has the correct tag, this is very inportant. Please also make sure that each glyph has a label and bbox subtags and each arc has source and target defined as attribute inside arc tag (not as subtags). Take your time and act with careful consideration. Do NOT enclose the JSON output in markdown code blocks like ```json and make sure that you are returning a valid JSON (this is important).";
+
+let writeResult = function(data, filename) {
+  fs.writeFile( filename, data, 'utf8', (err) => {
+    if (err) {
+      console.error('Error writing to file:', err);
+    } else {
+      console.log('File saved successfully!');
+    }
+  });
+};
 
 export { runLLM };
