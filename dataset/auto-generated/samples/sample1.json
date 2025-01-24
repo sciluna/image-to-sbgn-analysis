@@ -1,0 +1,710 @@
+{
+  "elements": {
+    "edges": [
+      {
+        "data": {
+          "class": "production",
+          "source": "25635bc6-8359-4904-a08b-37b46d8b99b4",
+          "target": "c5aefe50-cfc3-45c6-b7b8-c4bd39509dd3",
+          "id": "d1487186-d37d-4c0b-a491-62875ec8bb4e"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "logic arc",
+          "source": "2f8b4432-72f3-41ab-a5d6-b717df3cdeac",
+          "target": "83b446cb-c0ee-4d7f-a88e-b0e19ba9b340",
+          "id": "454e9801-0e3d-40cf-809d-f805ee37586f"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "consumption",
+          "source": "84663cf1-e518-4310-a9a8-3c2b139d9a82",
+          "target": "5493fe2f-0b71-42d9-88fe-6b6835ca3f46",
+          "id": "311d0701-1973-407e-b327-d400a18a8060"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "production",
+          "source": "5493fe2f-0b71-42d9-88fe-6b6835ca3f46",
+          "target": "c5aefe50-cfc3-45c6-b7b8-c4bd39509dd3",
+          "id": "aa527a0b-f4d5-4b8c-99f8-625f7ea2a900"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "consumption",
+          "source": "2f8b4432-72f3-41ab-a5d6-b717df3cdeac",
+          "target": "2c8efe07-2841-4075-9762-603c72561423",
+          "id": "7c619505-5cd4-46e8-a209-d1324be99ad4"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "production",
+          "source": "2c8efe07-2841-4075-9762-603c72561423",
+          "target": "0d120025-f7ae-47db-9ad7-5843ec29a10a",
+          "id": "157c7b66-740f-432b-8e3f-6c2418fd2b86"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "consumption",
+          "source": "2f8b4432-72f3-41ab-a5d6-b717df3cdeac",
+          "target": "25635bc6-8359-4904-a08b-37b46d8b99b4",
+          "id": "559419ad-cefc-4c9a-831a-87f01fc79781"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "production",
+          "source": "25635bc6-8359-4904-a08b-37b46d8b99b4",
+          "target": "0cf54d76-5fac-41d3-bf88-c202651a3615",
+          "id": "47f0194a-57d0-4434-ae54-d56481aa21b8"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "stimulation",
+          "source": "0d120025-f7ae-47db-9ad7-5843ec29a10a",
+          "target": "25635bc6-8359-4904-a08b-37b46d8b99b4",
+          "id": "40e279d1-2949-4f9f-9a36-2208ef064cd1"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "logic arc",
+          "source": "8062929f-2e3d-4c2b-aa50-665d70deffcc",
+          "target": "83b446cb-c0ee-4d7f-a88e-b0e19ba9b340",
+          "id": "cace7881-6dca-43ce-926f-767c7a4fba54"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "catalysis",
+          "source": "83b446cb-c0ee-4d7f-a88e-b0e19ba9b340",
+          "target": "5493fe2f-0b71-42d9-88fe-6b6835ca3f46",
+          "id": "7257ff15-09ef-49b4-b898-940c87a8ae7e"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      }
+    ],
+    "nodes": [
+      {
+        "data": {
+          "class": "perturbing agent",
+          "label": "Aspirin",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "8062929f-2e3d-4c2b-aa50-665d70deffcc"
+        },
+        "position": {
+          "x": 400,
+          "y": 0
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "macromolecule",
+          "label": "RIMS4",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "84663cf1-e518-4310-a9a8-3c2b139d9a82"
+        },
+        "position": {
+          "x": 600,
+          "y": 0
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "simple chemical",
+          "label": "Histidine",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "16bb4413-8b92-4ae6-8164-9953978befbd",
+          "parent": "2f8b4432-72f3-41ab-a5d6-b717df3cdeac"
+        },
+        "position": {
+          "x": 400,
+          "y": 364
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "simple chemical",
+          "label": "Amino\nacid",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "c5aefe50-cfc3-45c6-b7b8-c4bd39509dd3"
+        },
+        "position": {
+          "x": 600,
+          "y": 400
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "simple chemical",
+          "label": "Ammonia",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "0d120025-f7ae-47db-9ad7-5843ec29a10a"
+        },
+        "position": {
+          "x": 200,
+          "y": 600
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "simple chemical",
+          "label": "Histidine",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "0cf54d76-5fac-41d3-bf88-c202651a3615"
+        },
+        "position": {
+          "x": 600,
+          "y": 600
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "omitted process",
+          "label": "",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "5493fe2f-0b71-42d9-88fe-6b6835ca3f46"
+        },
+        "position": {
+          "x": 600,
+          "y": 200
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "process",
+          "label": "",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "2c8efe07-2841-4075-9762-603c72561423"
+        },
+        "position": {
+          "x": 200,
+          "y": 400
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "dissociation",
+          "label": "",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "25635bc6-8359-4904-a08b-37b46d8b99b4"
+        },
+        "position": {
+          "x": 400,
+          "y": 600
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "or",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "83b446cb-c0ee-4d7f-a88e-b0e19ba9b340"
+        },
+        "position": {
+          "x": 400,
+          "y": 200
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "simple chemical",
+          "label": "Amino\nacid",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "149c0515-c37a-419c-b5ff-de2fcaae5db1",
+          "parent": "2f8b4432-72f3-41ab-a5d6-b717df3cdeac"
+        },
+        "position": {
+          "x": 400,
+          "y": 436
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "complex",
+          "label": "",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "2f8b4432-72f3-41ab-a5d6-b717df3cdeac"
+        },
+        "position": {
+          "x": 400,
+          "y": 400
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      }
+    ]
+  },
+  "style": [
+    {
+      "selector": "node",
+      "style": {
+        "shape": "fn",
+        "label": "fn",
+        "font-size": "20px",
+        "width": "fn",
+        "height": "fn",
+        "text-valign": "center",
+        "text-halign": "center",
+        "text-wrap": "wrap",
+        "border-width": "1.5px",
+        "border-color": "rgb(85,85,85)",
+        "background-color": "rgb(255,255,255)",
+        "text-opacity": "1",
+        "opacity": "1",
+        "text-outline-color": "rgb(255,255,255)",
+        "text-outline-opacity": "1",
+        "text-outline-width": "0.75px"
+      }
+    },
+    {
+      "selector": "node:selected",
+      "style": {
+        "background-color": "rgb(214,118,20)",
+        "target-arrow-color": "rgb(0,0,0)",
+        "text-outline-color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "selector": "node:active",
+      "style": {
+        "overlay-color": "rgb(214,118,20)",
+        "overlay-padding": "14px"
+      }
+    },
+    {
+      "selector": "node[class = \"simple chemical\"]",
+      "style": {
+        "shape-polygon-points": "-1 0 -0.992 -0.134 -0.97 -0.272 -0.933 -0.408 -0.883 -0.541 -0.821 -0.664 -0.75 -0.775 -0.671 -0.869 -0.587 -0.945 -0.5 -1 0.5 -1 0.587 -0.945 0.671 -0.869 0.75 -0.775 0.821 -0.664 0.883 -0.541 0.933 -0.408 0.97 -0.272 0.992 -0.134 1 0 0.992 0.134 0.97 0.272 0.933 0.408 0.883 0.541 0.821 0.664 0.75 0.775 0.671 0.869 0.587 0.945 0.5 1 -0.5 1 -0.587 0.945 -0.671 0.869 -0.75 0.775 -0.821 0.664 -0.883 0.541 -0.933 0.408 -0.97 0.272 -0.992 0.134 -1 0"
+      }
+    },
+    {
+      "selector": "node[class = \"unspecified entity\"], node[class = \"simple chemical\"], node[class = \"simple chemical multimer\"], node[class = \"macromolecule\"], node[class = \"macromolecule multimer\"], node[class = \"nucleic acid feature\"], node[class = \"nucleic acid feature multimer\"], node[class = \"perturbing agent\"], node[class = \"phenotype\"], node[class = \"complex\"], node[class = \"complex multimer\"], node[class = \"compartment\"]",
+      "style": {
+        "background-image": "fn",
+        "background-width": "fn",
+        "background-position-x": "fn",
+        "background-position-y": "fn",
+        "background-fit": "fn",
+        "background-clip": "fn",
+        "padding": "fn",
+        "border-width": "fn"
+      }
+    },
+    {
+      "selector": "node[class = \"simple chemical multimer\"], node[class = \"macromolecule multimer\"], node[class = \"nucleic acid feature multimer\"], node[class = \"complex multimer\"]",
+      "style": {
+        "ghost": "yes",
+        "ghost-opacity": "1"
+      }
+    },
+    {
+      "selector": "node[class = \"macromolecule multimer\"], node[class = \"nucleic acid feature multimer\"]",
+      "style": {
+        "ghost-offset-x": "12px",
+        "ghost-offset-y": "12px"
+      }
+    },
+    {
+      "selector": "node[class = \"simple chemical multimer\"]",
+      "style": {
+        "ghost-offset-x": "5px",
+        "ghost-offset-y": "5px"
+      }
+    },
+    {
+      "selector": "node[class = \"complex multimer\"]",
+      "style": {
+        "ghost-offset-x": "16px",
+        "ghost-offset-y": "16px"
+      }
+    },
+    {
+      "selector": "node[class = \"complex\"], node[class = \"complex multimer\"], node[class = \"compartment\"]",
+      "style": {
+        "compound-sizing-wrt-labels": "exclude",
+        "text-valign": "bottom",
+        "text-halign": "center"
+      }
+    },
+    {
+      "selector": "node[class = \"association\"], node[class = \"dissociation\"]",
+      "style": {
+        "background-opacity": "1"
+      }
+    },
+    {
+      "selector": "node[class = \"association\"]",
+      "style": {
+        "background-color": "rgb(107,107,107)"
+      }
+    },
+    {
+      "selector": "node[class = \"source and sink\"]",
+      "style": {
+        "background-image": "fn",
+        "background-fit": "none",
+        "background-width": "100%",
+        "background-height": "100%",
+        "background-clip": "none",
+        "background-repeat": "no-repeat",
+        "border-width": "0px",
+        "shape-polygon-points": "-0.86 0.5 -0.75 0.65 -1 0.95 -0.95 1 -0.65 0.75 -0.5 0.86 0 1 0.5 0.86 0.71 0.71 0.86 0.5 1 0 0.86 -0.5 0.75 -0.65 1 -0.95 0.95 -1 0.65 -0.75 0.5 -0.86 0 -1 -0.5 -0.86 -0.71 -0.71 -0.86 -0.5 -1 0"
+      }
+    },
+    {
+      "selector": "node[class = \"dissociation\"]",
+      "style": {
+        "background-image": "fn",
+        "background-fit": "none",
+        "background-width": "100%",
+        "background-height": "100%",
+        "background-clip": "none",
+        "background-repeat": "no-repeat",
+        "border-width": "0px"
+      }
+    },
+    {
+      "selector": "edge",
+      "style": {
+        "arrow-scale": "1.75",
+        "curve-style": "bezier",
+        "line-color": "rgb(85,85,85)",
+        "target-arrow-fill": "hollow",
+        "source-arrow-fill": "hollow",
+        "width": "1.5px",
+        "target-arrow-color": "rgb(85,85,85)",
+        "source-arrow-color": "rgb(85,85,85)",
+        "text-border-color": "rgb(85,85,85)",
+        "color": "rgb(85,85,85)"
+      }
+    },
+    {
+      "selector": "edge:selected",
+      "style": {
+        "color": "rgb(214,118,20)",
+        "line-color": "rgb(214,118,20)",
+        "text-border-color": "rgb(214,118,20)",
+        "source-arrow-color": "rgb(214,118,20)",
+        "target-arrow-color": "rgb(214,118,20)"
+      }
+    },
+    {
+      "selector": "edge:active",
+      "style": {
+        "background-opacity": "0.7",
+        "overlay-color": "rgb(214,118,20)",
+        "overlay-padding": "8px"
+      }
+    },
+    {
+      "selector": "edge[cardinality > 0]",
+      "style": {
+        "text-background-shape": "rectangle",
+        "text-border-opacity": "1",
+        "text-border-width": "1px",
+        "text-background-color": "rgb(255,255,255)",
+        "text-background-opacity": "1"
+      }
+    },
+    {
+      "selector": "edge[class = \"consumption\"][cardinality > 0], edge[class = \"production\"][cardinality > 0]",
+      "style": {
+        "source-label": "fn",
+        "source-text-offset": "10px"
+      }
+    },
+    {
+      "selector": "edge[class]",
+      "style": {
+        "target-arrow-shape": "fn",
+        "source-arrow-shape": "none"
+      }
+    },
+    {
+      "selector": "edge[class = \"inhibition\"]",
+      "style": {
+        "target-arrow-fill": "filled"
+      }
+    },
+    {
+      "selector": "edge[class = \"negative influence\"]",
+      "style": {
+        "target-arrow-fill": "filled"
+      }
+    },
+    {
+      "selector": "edge[class = \"production\"]",
+      "style": {
+        "target-arrow-fill": "filled"
+      }
+    },
+    {
+      "selector": "core",
+      "style": {
+        "selection-box-color": "rgb(214,118,20)",
+        "selection-box-opacity": "0.2",
+        "selection-box-border-color": "rgb(214,118,20)"
+      }
+    }
+  ],
+  "data": {},
+  "zoomingEnabled": true,
+  "userZoomingEnabled": true,
+  "zoom": 0.8011869436201781,
+  "minZoom": 1e-50,
+  "maxZoom": 1e+50,
+  "panningEnabled": true,
+  "userPanningEnabled": true,
+  "pan": {
+    "x": -20.474777448071222,
+    "y": 62.04747774480711
+  },
+  "boxSelectionEnabled": true,
+  "renderer": {
+    "name": "canvas"
+  }
+}

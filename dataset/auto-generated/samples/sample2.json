@@ -1,0 +1,865 @@
+{
+  "elements": {
+    "nodes": [
+      {
+        "data": {
+          "class": "simple chemical",
+          "label": "Phenol",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "2fd0f31a-b49f-48d0-9356-12b92754d4ed",
+          "parent": "ce513881-a4a0-47c5-a8ba-7fe2a316cd56"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "macromolecule",
+          "label": "SNORA18",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "c9a9e5b0-26f5-42fc-b79a-1f14d33b0231",
+          "parent": "ce513881-a4a0-47c5-a8ba-7fe2a316cd56"
+        },
+        "position": {
+          "x": 200,
+          "y": 0
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "perturbing agent",
+          "label": "External\nStimulus",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "f2f196d6-0740-4a03-a27c-1dc77d7e0114",
+          "parent": "ce513881-a4a0-47c5-a8ba-7fe2a316cd56"
+        },
+        "position": {
+          "x": 600,
+          "y": 0
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "nucleic acid feature",
+          "label": "IRF1-GAS",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "c0a7456d-b60b-4bd1-b056-54399c04d634",
+          "parent": "ce513881-a4a0-47c5-a8ba-7fe2a316cd56"
+        },
+        "position": {
+          "x": 200,
+          "y": 200
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "nucleic acid feature",
+          "label": "R1",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "16ab2f63-a0f2-4640-9516-1b0ac7624dc2",
+          "parent": "ce513881-a4a0-47c5-a8ba-7fe2a316cd56"
+        },
+        "position": {
+          "x": 0,
+          "y": 400
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "unspecified entity",
+          "label": "m1AD",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "75cbdc3d-b13f-4c24-93cc-f745574fed6d",
+          "parent": "ce513881-a4a0-47c5-a8ba-7fe2a316cd56"
+        },
+        "position": {
+          "x": 400,
+          "y": 400
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "macromolecule",
+          "label": "EIF3C",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "9d1fa1d2-596a-437f-b6e9-dd338a3a082e",
+          "parent": "ce513881-a4a0-47c5-a8ba-7fe2a316cd56"
+        },
+        "position": {
+          "x": 600,
+          "y": 400
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "unspecified entity",
+          "label": "iNOS",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "dc1d35a4-269b-4670-9824-0b3d03447262",
+          "parent": "ce513881-a4a0-47c5-a8ba-7fe2a316cd56"
+        },
+        "position": {
+          "x": 200,
+          "y": 600
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "macromolecule",
+          "label": "CASC20",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "6cf1ea03-9410-41b7-b75c-41c34eeb2fbf",
+          "parent": "ce513881-a4a0-47c5-a8ba-7fe2a316cd56"
+        },
+        "position": {
+          "x": 400,
+          "y": 600
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "process",
+          "label": "",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "5a8f9591-c633-4b9a-bf61-aea59abcb1cf",
+          "parent": "ce513881-a4a0-47c5-a8ba-7fe2a316cd56"
+        },
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "process",
+          "label": "",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "817c0269-3d64-43fd-88f0-6dbc7c23bc85",
+          "parent": "ce513881-a4a0-47c5-a8ba-7fe2a316cd56"
+        },
+        "position": {
+          "x": 400,
+          "y": 200
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "process",
+          "label": "",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "faa5267e-63ba-4769-98fb-29cbb8a821ac",
+          "parent": "ce513881-a4a0-47c5-a8ba-7fe2a316cd56"
+        },
+        "position": {
+          "x": 200,
+          "y": 400
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "process",
+          "label": "",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "a69bb628-ec61-4b68-b446-3dcd690ec980",
+          "parent": "ce513881-a4a0-47c5-a8ba-7fe2a316cd56"
+        },
+        "position": {
+          "x": 600,
+          "y": 600
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "or",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "cfa97c57-c2d0-4737-ab72-d619dfa50421",
+          "parent": "ce513881-a4a0-47c5-a8ba-7fe2a316cd56"
+        },
+        "position": {
+          "x": 400,
+          "y": 0
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "compartment",
+          "label": "Extracellular",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "ce513881-a4a0-47c5-a8ba-7fe2a316cd56"
+        },
+        "position": {
+          "x": 311,
+          "y": 297
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      }
+    ],
+    "edges": [
+      {
+        "data": {
+          "class": "catalysis",
+          "source": "75cbdc3d-b13f-4c24-93cc-f745574fed6d",
+          "target": "a69bb628-ec61-4b68-b446-3dcd690ec980",
+          "id": "66fab053-4d67-4760-981f-2a18243958ad"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "consumption",
+          "source": "2fd0f31a-b49f-48d0-9356-12b92754d4ed",
+          "target": "5a8f9591-c633-4b9a-bf61-aea59abcb1cf",
+          "id": "2cc39ea6-2ba0-4737-a38b-a938b11ab8ef"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "production",
+          "source": "5a8f9591-c633-4b9a-bf61-aea59abcb1cf",
+          "target": "c0a7456d-b60b-4bd1-b056-54399c04d634",
+          "id": "a0cd26d0-b4f8-4c34-8356-1849fc4d2b85"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "stimulation",
+          "source": "16ab2f63-a0f2-4640-9516-1b0ac7624dc2",
+          "target": "5a8f9591-c633-4b9a-bf61-aea59abcb1cf",
+          "id": "eb7796df-d356-4580-ac20-9a2ce997457b"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "consumption",
+          "source": "75cbdc3d-b13f-4c24-93cc-f745574fed6d",
+          "target": "817c0269-3d64-43fd-88f0-6dbc7c23bc85",
+          "id": "7732d1bf-2be5-424a-b250-94fda875c3d0"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "production",
+          "source": "817c0269-3d64-43fd-88f0-6dbc7c23bc85",
+          "target": "c0a7456d-b60b-4bd1-b056-54399c04d634",
+          "id": "2a109e9f-f0e4-4ece-9886-49b322523806"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "consumption",
+          "source": "c0a7456d-b60b-4bd1-b056-54399c04d634",
+          "target": "faa5267e-63ba-4769-98fb-29cbb8a821ac",
+          "id": "13e24538-fe57-45f9-af94-3e7f31075313"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "production",
+          "source": "faa5267e-63ba-4769-98fb-29cbb8a821ac",
+          "target": "75cbdc3d-b13f-4c24-93cc-f745574fed6d",
+          "id": "f621491b-c251-415a-9d6d-cbcfcbd5fe80"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "necessary stimulation",
+          "source": "dc1d35a4-269b-4670-9824-0b3d03447262",
+          "target": "faa5267e-63ba-4769-98fb-29cbb8a821ac",
+          "id": "23e74e8b-f61a-4da1-8f66-7c08ad4fdfc1"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "modulation",
+          "source": "16ab2f63-a0f2-4640-9516-1b0ac7624dc2",
+          "target": "faa5267e-63ba-4769-98fb-29cbb8a821ac",
+          "id": "dde3f555-50eb-4b26-b0a2-ddbb8fbce2ac"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "consumption",
+          "source": "9d1fa1d2-596a-437f-b6e9-dd338a3a082e",
+          "target": "a69bb628-ec61-4b68-b446-3dcd690ec980",
+          "id": "efdcca24-7ec1-4aec-8c2d-e27d2ac87818"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "production",
+          "source": "a69bb628-ec61-4b68-b446-3dcd690ec980",
+          "target": "6cf1ea03-9410-41b7-b75c-41c34eeb2fbf",
+          "id": "e95ddc0c-9c0a-4d7b-a4da-c9c17e112e99"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "logic arc",
+          "source": "f2f196d6-0740-4a03-a27c-1dc77d7e0114",
+          "target": "cfa97c57-c2d0-4737-ab72-d619dfa50421",
+          "id": "a56e96d2-ae8f-46a0-b2a2-664d30f06649"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "inhibition",
+          "source": "cfa97c57-c2d0-4737-ab72-d619dfa50421",
+          "target": "817c0269-3d64-43fd-88f0-6dbc7c23bc85",
+          "id": "8f9c33d5-35fd-4ef1-804e-ce4172b6fe7c"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "logic arc",
+          "source": "c9a9e5b0-26f5-42fc-b79a-1f14d33b0231",
+          "target": "cfa97c57-c2d0-4737-ab72-d619dfa50421",
+          "id": "b5febfab-128f-40cc-ad62-6b972ee022a0"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      }
+    ]
+  },
+  "style": [
+    {
+      "selector": "node",
+      "style": {
+        "shape": "fn",
+        "label": "fn",
+        "font-size": "20px",
+        "width": "fn",
+        "height": "fn",
+        "text-valign": "center",
+        "text-halign": "center",
+        "text-wrap": "wrap",
+        "border-width": "1.5px",
+        "border-color": "rgb(85,85,85)",
+        "background-color": "rgb(255,255,255)",
+        "text-opacity": "1",
+        "opacity": "1",
+        "text-outline-color": "rgb(255,255,255)",
+        "text-outline-opacity": "1",
+        "text-outline-width": "0.75px"
+      }
+    },
+    {
+      "selector": "node:selected",
+      "style": {
+        "background-color": "rgb(214,118,20)",
+        "target-arrow-color": "rgb(0,0,0)",
+        "text-outline-color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "selector": "node:active",
+      "style": {
+        "overlay-color": "rgb(214,118,20)",
+        "overlay-padding": "14px"
+      }
+    },
+    {
+      "selector": "node[class = \"simple chemical\"]",
+      "style": {
+        "shape-polygon-points": "-1 0 -0.992 -0.134 -0.97 -0.272 -0.933 -0.408 -0.883 -0.541 -0.821 -0.664 -0.75 -0.775 -0.671 -0.869 -0.587 -0.945 -0.5 -1 0.5 -1 0.587 -0.945 0.671 -0.869 0.75 -0.775 0.821 -0.664 0.883 -0.541 0.933 -0.408 0.97 -0.272 0.992 -0.134 1 0 0.992 0.134 0.97 0.272 0.933 0.408 0.883 0.541 0.821 0.664 0.75 0.775 0.671 0.869 0.587 0.945 0.5 1 -0.5 1 -0.587 0.945 -0.671 0.869 -0.75 0.775 -0.821 0.664 -0.883 0.541 -0.933 0.408 -0.97 0.272 -0.992 0.134 -1 0"
+      }
+    },
+    {
+      "selector": "node[class = \"unspecified entity\"], node[class = \"simple chemical\"], node[class = \"simple chemical multimer\"], node[class = \"macromolecule\"], node[class = \"macromolecule multimer\"], node[class = \"nucleic acid feature\"], node[class = \"nucleic acid feature multimer\"], node[class = \"perturbing agent\"], node[class = \"phenotype\"], node[class = \"complex\"], node[class = \"complex multimer\"], node[class = \"compartment\"]",
+      "style": {
+        "background-image": "fn",
+        "background-width": "fn",
+        "background-position-x": "fn",
+        "background-position-y": "fn",
+        "background-fit": "fn",
+        "background-clip": "fn",
+        "padding": "fn",
+        "border-width": "fn"
+      }
+    },
+    {
+      "selector": "node[class = \"simple chemical multimer\"], node[class = \"macromolecule multimer\"], node[class = \"nucleic acid feature multimer\"], node[class = \"complex multimer\"]",
+      "style": {
+        "ghost": "yes",
+        "ghost-opacity": "1"
+      }
+    },
+    {
+      "selector": "node[class = \"macromolecule multimer\"], node[class = \"nucleic acid feature multimer\"]",
+      "style": {
+        "ghost-offset-x": "12px",
+        "ghost-offset-y": "12px"
+      }
+    },
+    {
+      "selector": "node[class = \"simple chemical multimer\"]",
+      "style": {
+        "ghost-offset-x": "5px",
+        "ghost-offset-y": "5px"
+      }
+    },
+    {
+      "selector": "node[class = \"complex multimer\"]",
+      "style": {
+        "ghost-offset-x": "16px",
+        "ghost-offset-y": "16px"
+      }
+    },
+    {
+      "selector": "node[class = \"complex\"], node[class = \"complex multimer\"], node[class = \"compartment\"]",
+      "style": {
+        "compound-sizing-wrt-labels": "exclude",
+        "text-valign": "bottom",
+        "text-halign": "center"
+      }
+    },
+    {
+      "selector": "node[class = \"association\"], node[class = \"dissociation\"]",
+      "style": {
+        "background-opacity": "1"
+      }
+    },
+    {
+      "selector": "node[class = \"association\"]",
+      "style": {
+        "background-color": "rgb(107,107,107)"
+      }
+    },
+    {
+      "selector": "node[class = \"source and sink\"]",
+      "style": {
+        "background-image": "fn",
+        "background-fit": "none",
+        "background-width": "100%",
+        "background-height": "100%",
+        "background-clip": "none",
+        "background-repeat": "no-repeat",
+        "border-width": "0px",
+        "shape-polygon-points": "-0.86 0.5 -0.75 0.65 -1 0.95 -0.95 1 -0.65 0.75 -0.5 0.86 0 1 0.5 0.86 0.71 0.71 0.86 0.5 1 0 0.86 -0.5 0.75 -0.65 1 -0.95 0.95 -1 0.65 -0.75 0.5 -0.86 0 -1 -0.5 -0.86 -0.71 -0.71 -0.86 -0.5 -1 0"
+      }
+    },
+    {
+      "selector": "node[class = \"dissociation\"]",
+      "style": {
+        "background-image": "fn",
+        "background-fit": "none",
+        "background-width": "100%",
+        "background-height": "100%",
+        "background-clip": "none",
+        "background-repeat": "no-repeat",
+        "border-width": "0px"
+      }
+    },
+    {
+      "selector": "edge",
+      "style": {
+        "arrow-scale": "1.75",
+        "curve-style": "bezier",
+        "line-color": "rgb(85,85,85)",
+        "target-arrow-fill": "hollow",
+        "source-arrow-fill": "hollow",
+        "width": "1.5px",
+        "target-arrow-color": "rgb(85,85,85)",
+        "source-arrow-color": "rgb(85,85,85)",
+        "text-border-color": "rgb(85,85,85)",
+        "color": "rgb(85,85,85)"
+      }
+    },
+    {
+      "selector": "edge:selected",
+      "style": {
+        "color": "rgb(214,118,20)",
+        "line-color": "rgb(214,118,20)",
+        "text-border-color": "rgb(214,118,20)",
+        "source-arrow-color": "rgb(214,118,20)",
+        "target-arrow-color": "rgb(214,118,20)"
+      }
+    },
+    {
+      "selector": "edge:active",
+      "style": {
+        "background-opacity": "0.7",
+        "overlay-color": "rgb(214,118,20)",
+        "overlay-padding": "8px"
+      }
+    },
+    {
+      "selector": "edge[cardinality > 0]",
+      "style": {
+        "text-background-shape": "rectangle",
+        "text-border-opacity": "1",
+        "text-border-width": "1px",
+        "text-background-color": "rgb(255,255,255)",
+        "text-background-opacity": "1"
+      }
+    },
+    {
+      "selector": "edge[class = \"consumption\"][cardinality > 0], edge[class = \"production\"][cardinality > 0]",
+      "style": {
+        "source-label": "fn",
+        "source-text-offset": "10px"
+      }
+    },
+    {
+      "selector": "edge[class]",
+      "style": {
+        "target-arrow-shape": "fn",
+        "source-arrow-shape": "none"
+      }
+    },
+    {
+      "selector": "edge[class = \"inhibition\"]",
+      "style": {
+        "target-arrow-fill": "filled"
+      }
+    },
+    {
+      "selector": "edge[class = \"negative influence\"]",
+      "style": {
+        "target-arrow-fill": "filled"
+      }
+    },
+    {
+      "selector": "edge[class = \"production\"]",
+      "style": {
+        "target-arrow-fill": "filled"
+      }
+    },
+    {
+      "selector": "core",
+      "style": {
+        "selection-box-color": "rgb(214,118,20)",
+        "selection-box-opacity": "0.2",
+        "selection-box-border-color": "rgb(214,118,20)"
+      }
+    }
+  ],
+  "data": {},
+  "zoomingEnabled": true,
+  "userZoomingEnabled": true,
+  "zoom": 0.6585365853658537,
+  "minZoom": 1e-50,
+  "maxZoom": 1e+50,
+  "panningEnabled": true,
+  "userPanningEnabled": true,
+  "pan": {
+    "x": 95.1951219512195,
+    "y": 97.58231707317071
+  },
+  "boxSelectionEnabled": true,
+  "renderer": {
+    "name": "canvas"
+  }
+}
