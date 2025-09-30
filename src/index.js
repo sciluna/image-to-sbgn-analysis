@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { runLLM } from './llm.js';
 import { analyze } from './analysis.js';
+import cytoscape from 'cytoscape';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -31,58 +32,138 @@ app.post('/', async (req, res) => {
     let prep = body.prep;
     let icl = body.icl;
 
-    const userCount = 3;  // there are 3 different hand-drawn versions of each sample
+    const filenames = fs.readdirSync(path.join(__dirname, "/experiment/" + language + "/json"));
 
-    const filenames = fs.readdirSync(path.join(__dirname, "/dataset/" + language + "/json"));
-    let allResults = [];
+    async function processFiles() {
+      let allResults = [];
 
-    filenames.forEach(async (file, index) => {  // for each file in the dataset, we will make evaluation for three users
-      let filename = path.parse(file).name;
-      let inputPathCyJSON = path.join(__dirname, "/dataset/" + language + "/json/" + filename + ".json");
-      allResults[index] = [];
+      await Promise.all(
+        filenames.map(async (file, index) => {
+          let filename = path.parse(file).name;
+          let inputPathCyJSON = path.join(__dirname, "/experiment/" + language + "/json/" + filename + ".json");
+          allResults[index] = [];
 
-      // this is ground truth data for sample 
-      let trueCyJSON = fs.readFileSync(inputPathCyJSON, 'utf8');
+          // this is ground truth data for sample 
+          let trueCyJSON = fs.readFileSync(inputPathCyJSON, 'utf8');
 
-      for (let i = 1; i <= userCount; i++) {
-        // get image content to be converted - apply preprocessing if required
-        let inputPathImage = path.join(__dirname, "/dataset/" + language + "/user" + i + "/" + filename + ".png");
-        let imageContent;
-        if (prep == "raw") {
-          imageContent = readImage(inputPathImage);
-        } else {  // return to black-white image
-          let buffer = await sharp(inputPathImage).grayscale().threshold(128).toBuffer();
-          imageContent = `data:image/png;base64,${buffer.toString('base64')}`;
-        }
-
-        try {
-          let resultFilename = path.join(__dirname, "/dataset/" + language + "/user" + i + "/" + language + "-user" + i + "-" + filename + ".txt");
-          let convertedSbgnml = await runLLM(llm, imageContent, language, icl, resultFilename);
-          //let convertedSbgnml = undefined;
-          // now we have both ground truth cy json and converted sbgn, so let's compare them
-          let analysisResult = await analyze(convertedSbgnml, trueCyJSON);
-          allResults[index].push(analysisResult);
-          console.log(allResults[0]);
-
-          if (index == filenames.length - 1 && i == userCount) {
-            let csvData = arrayToCsv(allResults, filenames);
-            console.log(csvData);
-            // Download the CSV file
-/*             fs.writeFile('output.csv', csvData, 'utf8', (err) => {
-              if (err) {
-                console.error('Error writing to file:', err);
-              } else {
-                console.log('CSV file saved successfully!');
-              }
-            }); */
+          // get image content to be converted - use binary version if option is binary
+          let imageContent;
+          if (prep == "raw") {
+            let inputPathImage = path.join(__dirname, "/experiment/" + language + "/input/raw/" + filename + "_hd" + ".png");
+            imageContent = readImage(inputPathImage);
+          } else {  // use black-white image
+            let inputPathImage = path.join(__dirname, "/experiment/" + language + "/input/binary/" + filename + "_binary" + ".png");
+            imageContent = readImage(inputPathImage);
+    /*           let buffer = await sharp(inputPathImage).grayscale().threshold(128).toBuffer();
+            imageContent = `data:image/png;base64,${buffer.toString('base64')}`; */
           }
-        } catch (error) {
-          console.log("Error!");
-        }
-      }
-    });
+
+          try {
+            let resultFilename = path.join(__dirname, "/experiment/" + language + "/results/raw/" + filename + ".txt");
+            let sbgnFilename = path.join(__dirname, "/experiment/" + language + "/results/sbgnml/" + filename + ".sbgnml");
+            let convertedSbgnml = await runLLM(llm, imageContent, language, icl, resultFilename, sbgnFilename);
+            // now we have both ground truth cy json and converted sbgn, so let's compare them
+            let analysisResult = await analyze(convertedSbgnml, trueCyJSON);
+            allResults[index].push(analysisResult);
+            console.log("Processed " + filename);
+            console.log(allResults[index]);
+          } catch (error) {
+            console.error("Error processing", filename, error);
+          }
+        })
+      );
+
+      let csvData = arrayToCsv(allResults, filenames);
+      fs.writeFileSync(`src/experiment/${language}/output.csv`, csvData, 'utf8');
+      console.log('CSV file saved successfully!');
+    }
+
+    processFiles();
   });
 });
+
+/* This part is to generate csv file for MTurk from cytoscape.js JSON files
+const baseUrl = 'https://github.com/sciluna/image-to-sbgn-analysis/blob/main/dataset/auto-generated/';
+
+app.post('/', async (req, res) => {
+  let body = "";
+  req.on('data', data => {
+    body += data;
+  });
+
+  req.on('end', async () => {
+    body = JSON.parse(body);
+    const files = fs.readdirSync(path.join(__dirname, "/mt_sbgnmls"));
+    let csvData = [];
+
+    files.forEach((file, index) => {
+      let filename = path.parse(file).name;
+      let inputPathCyJSON = path.join(__dirname, "/mt_sbgnmls/" + filename + ".json");
+      let rawData = fs.readFileSync(inputPathCyJSON, 'utf8');
+      let jsonData = JSON.parse(rawData);
+      let language = index < 25 ? "AF" : "PD";
+      let refLink = index < 25 ? "https://raw.githubusercontent.com/sciluna/image-to-sbgn-analysis/refs/heads/main/dataset/auto-generated/sbgn_af_stylesheet.png" : "https://raw.githubusercontent.com/sciluna/image-to-sbgn-analysis/refs/heads/main/dataset/auto-generated/sbgn_pd_stylesheet.png";
+      const imageUrl = baseUrl + language + "/" + filename + ".png?raw=true";
+      const [nodeData, edgeData] = processJsonContent(jsonData);
+      csvData.push({ url: imageUrl, filename: filename + ".png", nodeData, edgeData, refCardLink: refLink });
+    });
+    csvData = jsonToCsv(csvData);
+    fs.writeFileSync('./sbgn_data.csv', csvData, 'utf8');
+    console.log(csvData);
+  });
+});
+
+// Convert JSON to CSV manually
+function jsonToCsv(jsonData) {
+  let csv = '';
+  
+  // Extract headers
+  const headers = Object.keys(jsonData[0]);
+  csv += headers.join(',') + '\n';
+  
+  // Extract values
+  jsonData.forEach(obj => {
+      const values = headers.map(header => obj[header]);
+      csv += values.join(',') + '\n';
+  });
+  
+  return csv;
+}
+
+function processJsonContent(jsonData) {
+  let cy = cytoscape({
+    styleEnabled: true,
+    headless: true
+  });
+
+  cy.json({ elements: jsonData.elements });
+
+  let nodeMap = new Map();
+  let edgeMap = new Map();
+  let nodeData = "";
+  let edgeData = "";
+
+  cy.nodes().forEach (node => {
+    let nodeClass = node.data('class');
+    if(nodeMap.has(nodeClass)) {
+      nodeMap.set(nodeClass, nodeMap.get(nodeClass) + 1);
+    } else {
+      nodeMap.set(nodeClass, 1);
+    }
+  });
+  cy.edges().forEach (edge => {
+    let edgeClass = edge.data('class');
+    if(edgeMap.has(edgeClass)) {
+      edgeMap.set(edgeClass, edgeMap.get(edgeClass) + 1);
+    } else {
+      edgeMap.set(edgeClass, 1);
+    }
+  });
+
+  nodeData = Array.from(nodeMap, ([key, value]) => `${value} ${key}`).join('; ');
+  edgeData = Array.from(edgeMap, ([key, value]) => `${value} ${key}`).join('; ');
+  return [nodeData, edgeData]
+} */
 
 // convert png image to base64
 const readImage = (imgPath) => {
@@ -98,9 +179,9 @@ const readImage = (imgPath) => {
 };
 
 let arrayToCsv = function (data, fileNames) {
-  const headers = ['sample', 'c_1', 'n_1', 'nc_1', 'e_1', 'ec_1', 'l_1', 'c_2', 'n_2', 'nc_2', 'e_2', 'ec_2', 'l_2', 'c_3', 'n_3', 'nc_3', 'e_3', 'ec_3', 'l_3'];
+  const headers = ['sample', 'c_1', 'n_1', 'nc_1', 'e_1', 'ec_1', 'l_1'];
   const rows = data.map((row, rowIndex) => {
-    const rowData = { sample: fileNames[rowIndex] };
+    const rowData = { sample: fileNames[rowIndex].substring(0, fileNames[rowIndex].indexOf("."))};
     row.forEach((item, itemIndex) => {
       rowData[`c_${itemIndex + 1}`] = item.c || 'N/A';
       rowData[`n_${itemIndex + 1}`] = item.n || 'N/A';

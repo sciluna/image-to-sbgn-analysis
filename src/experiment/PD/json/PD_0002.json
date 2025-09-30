@@ -1,0 +1,613 @@
+{
+  "elements": {
+    "nodes": [
+      {
+        "data": {
+          "class": "macromolecule",
+          "label": "TRIM38",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "n0",
+          "parent": "n8"
+        },
+        "position": {
+          "x": 400,
+          "y": 0
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "not",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "n1"
+        },
+        "position": {
+          "x": 600,
+          "y": 400
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "simple chemical",
+          "label": "Histamine",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "n2",
+          "parent": "n8"
+        },
+        "position": {
+          "x": 200,
+          "y": 200
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "perturbing agent",
+          "label": "Codeine",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "n3"
+        },
+        "position": {
+          "x": 600,
+          "y": 200
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "phenotype",
+          "label": "Oxidative\nstress",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "n4"
+        },
+        "position": {
+          "x": 600,
+          "y": 600
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "simple chemical",
+          "label": "Acetate",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "n5",
+          "parent": "n8"
+        },
+        "position": {
+          "x": 400,
+          "y": 400
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "macromolecule",
+          "label": "NHLRC4",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "n6",
+          "parent": "n9"
+        },
+        "position": {
+          "x": 400,
+          "y": 636
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "process",
+          "label": "",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "n7",
+          "parent": "n8"
+        },
+        "position": {
+          "x": 400,
+          "y": 200
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "compartment",
+          "label": "Cytoplasm",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "n8"
+        },
+        "position": {
+          "x": 300,
+          "y": 200
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "complex",
+          "label": "",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "n9"
+        },
+        "position": {
+          "x": 400,
+          "y": 600
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "macromolecule",
+          "label": "DMRT1",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "n10",
+          "parent": "n9"
+        },
+        "position": {
+          "x": 400,
+          "y": 564
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      }
+    ],
+    "edges": [
+      {
+        "data": {
+          "class": "inhibition",
+          "source": "n1",
+          "target": "n4",
+          "id": "e0"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "logic arc",
+          "source": "n3",
+          "target": "n1",
+          "id": "e1"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "modulation",
+          "source": "n9",
+          "target": "n4",
+          "id": "e2"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "catalysis",
+          "source": "n3",
+          "target": "n7",
+          "id": "e3"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "inhibition",
+          "source": "n2",
+          "target": "n7",
+          "id": "e4"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "production",
+          "source": "n7",
+          "target": "n5",
+          "id": "e5"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "consumption",
+          "source": "n0",
+          "target": "n7",
+          "id": "e6"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      }
+    ]
+  },
+  "style": [
+    {
+      "selector": "node",
+      "style": {
+        "shape": "fn",
+        "label": "fn",
+        "font-size": "20px",
+        "width": "fn",
+        "height": "fn",
+        "text-valign": "center",
+        "text-halign": "center",
+        "text-wrap": "wrap",
+        "border-width": "1.5px",
+        "border-color": "rgb(85,85,85)",
+        "background-color": "rgb(255,255,255)",
+        "text-opacity": "1",
+        "opacity": "1",
+        "text-outline-color": "rgb(255,255,255)",
+        "text-outline-opacity": "1",
+        "text-outline-width": "0.75px"
+      }
+    },
+    {
+      "selector": "node:selected",
+      "style": {
+        "background-color": "rgb(214,118,20)",
+        "target-arrow-color": "rgb(0,0,0)",
+        "text-outline-color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "selector": "node:active",
+      "style": {
+        "overlay-color": "rgb(214,118,20)",
+        "overlay-padding": "14px"
+      }
+    },
+    {
+      "selector": "node[class = \"simple chemical\"]",
+      "style": {
+        "shape-polygon-points": "-1 0 -0.992 -0.134 -0.97 -0.272 -0.933 -0.408 -0.883 -0.541 -0.821 -0.664 -0.75 -0.775 -0.671 -0.869 -0.587 -0.945 -0.5 -1 0.5 -1 0.587 -0.945 0.671 -0.869 0.75 -0.775 0.821 -0.664 0.883 -0.541 0.933 -0.408 0.97 -0.272 0.992 -0.134 1 0 0.992 0.134 0.97 0.272 0.933 0.408 0.883 0.541 0.821 0.664 0.75 0.775 0.671 0.869 0.587 0.945 0.5 1 -0.5 1 -0.587 0.945 -0.671 0.869 -0.75 0.775 -0.821 0.664 -0.883 0.541 -0.933 0.408 -0.97 0.272 -0.992 0.134 -1 0"
+      }
+    },
+    {
+      "selector": "node[class = \"unspecified entity\"], node[class = \"simple chemical\"], node[class = \"simple chemical multimer\"], node[class = \"macromolecule\"], node[class = \"macromolecule multimer\"], node[class = \"nucleic acid feature\"], node[class = \"nucleic acid feature multimer\"], node[class = \"perturbing agent\"], node[class = \"phenotype\"], node[class = \"complex\"], node[class = \"complex multimer\"], node[class = \"compartment\"]",
+      "style": {
+        "background-image": "fn",
+        "background-width": "fn",
+        "background-position-x": "fn",
+        "background-position-y": "fn",
+        "background-fit": "fn",
+        "background-clip": "fn",
+        "padding": "fn",
+        "border-width": "fn"
+      }
+    },
+    {
+      "selector": "node[class = \"simple chemical multimer\"], node[class = \"macromolecule multimer\"], node[class = \"nucleic acid feature multimer\"], node[class = \"complex multimer\"]",
+      "style": {
+        "ghost": "yes",
+        "ghost-opacity": "1"
+      }
+    },
+    {
+      "selector": "node[class = \"macromolecule multimer\"], node[class = \"nucleic acid feature multimer\"]",
+      "style": {
+        "ghost-offset-x": "12px",
+        "ghost-offset-y": "12px"
+      }
+    },
+    {
+      "selector": "node[class = \"simple chemical multimer\"]",
+      "style": {
+        "ghost-offset-x": "5px",
+        "ghost-offset-y": "5px"
+      }
+    },
+    {
+      "selector": "node[class = \"complex multimer\"]",
+      "style": {
+        "ghost-offset-x": "16px",
+        "ghost-offset-y": "16px"
+      }
+    },
+    {
+      "selector": "node[class = \"complex\"], node[class = \"complex multimer\"], node[class = \"compartment\"]",
+      "style": {
+        "compound-sizing-wrt-labels": "exclude",
+        "text-valign": "bottom",
+        "text-halign": "center"
+      }
+    },
+    {
+      "selector": "node[class = \"association\"], node[class = \"dissociation\"]",
+      "style": {
+        "background-opacity": "1"
+      }
+    },
+    {
+      "selector": "node[class = \"association\"]",
+      "style": {
+        "background-color": "rgb(107,107,107)"
+      }
+    },
+    {
+      "selector": "node[class = \"source and sink\"]",
+      "style": {
+        "background-image": "fn",
+        "background-fit": "none",
+        "background-width": "100%",
+        "background-height": "100%",
+        "background-clip": "none",
+        "background-repeat": "no-repeat",
+        "border-width": "0px",
+        "shape-polygon-points": "-0.86 0.5 -0.75 0.65 -1 0.95 -0.95 1 -0.65 0.75 -0.5 0.86 0 1 0.5 0.86 0.71 0.71 0.86 0.5 1 0 0.86 -0.5 0.75 -0.65 1 -0.95 0.95 -1 0.65 -0.75 0.5 -0.86 0 -1 -0.5 -0.86 -0.71 -0.71 -0.86 -0.5 -1 0"
+      }
+    },
+    {
+      "selector": "node[class = \"dissociation\"]",
+      "style": {
+        "background-image": "fn",
+        "background-fit": "none",
+        "background-width": "100%",
+        "background-height": "100%",
+        "background-clip": "none",
+        "background-repeat": "no-repeat",
+        "border-width": "0px"
+      }
+    },
+    {
+      "selector": "edge",
+      "style": {
+        "arrow-scale": "1.75",
+        "curve-style": "bezier",
+        "line-color": "rgb(85,85,85)",
+        "target-arrow-fill": "hollow",
+        "source-arrow-fill": "hollow",
+        "width": "1.5px",
+        "target-arrow-color": "rgb(85,85,85)",
+        "source-arrow-color": "rgb(85,85,85)",
+        "text-border-color": "rgb(85,85,85)",
+        "color": "rgb(85,85,85)"
+      }
+    },
+    {
+      "selector": "edge:selected",
+      "style": {
+        "color": "rgb(214,118,20)",
+        "line-color": "rgb(214,118,20)",
+        "text-border-color": "rgb(214,118,20)",
+        "source-arrow-color": "rgb(214,118,20)",
+        "target-arrow-color": "rgb(214,118,20)"
+      }
+    },
+    {
+      "selector": "edge:active",
+      "style": {
+        "background-opacity": "0.7",
+        "overlay-color": "rgb(214,118,20)",
+        "overlay-padding": "8px"
+      }
+    },
+    {
+      "selector": "edge[cardinality > 0]",
+      "style": {
+        "text-background-shape": "rectangle",
+        "text-border-opacity": "1",
+        "text-border-width": "1px",
+        "text-background-color": "rgb(255,255,255)",
+        "text-background-opacity": "1"
+      }
+    },
+    {
+      "selector": "edge[class = \"consumption\"][cardinality > 0], edge[class = \"production\"][cardinality > 0]",
+      "style": {
+        "source-label": "fn",
+        "source-text-offset": "10px"
+      }
+    },
+    {
+      "selector": "edge[class]",
+      "style": {
+        "target-arrow-shape": "fn",
+        "source-arrow-shape": "none"
+      }
+    },
+    {
+      "selector": "edge[class = \"inhibition\"]",
+      "style": {
+        "target-arrow-fill": "filled"
+      }
+    },
+    {
+      "selector": "edge[class = \"negative influence\"]",
+      "style": {
+        "target-arrow-fill": "filled"
+      }
+    },
+    {
+      "selector": "edge[class = \"production\"]",
+      "style": {
+        "target-arrow-fill": "filled"
+      }
+    },
+    {
+      "selector": "core",
+      "style": {
+        "selection-box-color": "rgb(214,118,20)",
+        "selection-box-opacity": "0.2",
+        "selection-box-border-color": "rgb(214,118,20)"
+      }
+    }
+  ],
+  "data": {},
+  "zoomingEnabled": true,
+  "userZoomingEnabled": true,
+  "zoom": 0.7012987012987013,
+  "minZoom": 1e-50,
+  "maxZoom": 1e+50,
+  "panningEnabled": true,
+  "userPanningEnabled": true,
+  "pan": {
+    "x": 26.14285714285711,
+    "y": 82.5974025974026
+  },
+  "boxSelectionEnabled": true,
+  "renderer": {
+    "name": "canvas"
+  }
+}

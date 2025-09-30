@@ -35,17 +35,16 @@ const analyze = async function (convertedSbgnml, trueCyJSON) {
     const edgeCountGenerated = cy2.edges().length;
 
     // label counts
-    const nodesWithLabelOriginal = cy1.nodes().filter('[label != ""]');
+    const nodesWithLabelOriginal = cy1.nodes().filter('[label]').filter('[label != ""]');
     const labelCountOriginal = nodesWithLabelOriginal.length;
     const correctLabelCount = countCorrectLabels(cy1, cy2);
-    console.log(correctLabelCount);
 
-    resultObject.c = 1;
-    resultObject.n = nodeCountGenerated + "/" + nodeCountOriginal;
-    resultObject.nc = 1;
-    resultObject.e = edgeCountGenerated + "/" + edgeCountOriginal;
-    resultObject.ec = 1;
-    resultObject.l = correctLabelCount + "/" + labelCountOriginal;
+    resultObject.c = 1; // compilation
+    resultObject.n = nodeCountGenerated + "/" + nodeCountOriginal;  // node conversion
+    resultObject.nc = 1;  // node classes
+    resultObject.e = edgeCountGenerated + "/" + edgeCountOriginal;  // edge conversion
+    resultObject.ec = 1;  // edge classes
+    resultObject.l = correctLabelCount + "/" + cy2.nodes().length;  // label conversion
 
   } else {
     resultObject.c = 0;
@@ -61,8 +60,8 @@ const analyze = async function (convertedSbgnml, trueCyJSON) {
 
 function countCorrectLabels(originalGraph, generatedGraph) {
   // exctract labels from both graph
-  const originalLabels = originalGraph.nodes().filter('[label != ""]').toArray().map(node => node.data('label'));
-  const generatedLabels = generatedGraph.nodes().filter('[label != ""]').toArray().map(node => node.data('label'));
+  const originalLabels = originalGraph.nodes().toArray().map(node => node.data('label') == undefined ? undefined : node.data('label').replace(/(\r\n|\n|\r)/gm, " ").toLowerCase());
+  const generatedLabels = generatedGraph.nodes().toArray().map(node => node.data('label') == undefined ? undefined : node.data('label').replace(/(\r\n|\n|\r)/gm, " ").toLowerCase());
 
   // frequency map for original labels
   const labelFrequency = new Map();
@@ -74,7 +73,7 @@ function countCorrectLabels(originalGraph, generatedGraph) {
 
   // now check each label in the generated graph
   generatedLabels.forEach(label => {
-    if (labelFrequency.has(label && labelFrequency.get(label) > 0)) {
+    if (labelFrequency.has(label) && labelFrequency.get(label) > 0) {
       correctCount++;
       // decrease the count to handle duplicates
       labelFrequency.set(label, labelFrequency.get(label) - 1);

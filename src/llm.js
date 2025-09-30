@@ -3,7 +3,10 @@ import fs from 'fs';
 import path from 'path';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { TokenJS } from 'token.js'
+import format from 'xml-formatter';
+import { TokenJS } from 'token.js';
+import { OpenAI, AzureOpenAI } from "openai";
+import { getBearerTokenProvider, DefaultAzureCredential } from "@azure/identity";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -11,8 +14,12 @@ const __dirname = dirname(__filename);
 // Load environment variables
 config();
 
-const runLLM = async function (llmType, imageContent, language, icl, resultFilename) {
-  // Create the Token.js client
+const client2 = new OpenAI({
+  apiKey: process.env.OPEN_API_KEY,
+});
+
+const runLLM = async function (llmType, imageContent, language, icl, resultFilename, sbgnFilename) {
+/*   // Create the Token.js client
   const tokenjs = new TokenJS();
 
   // Initialize API
@@ -25,14 +32,21 @@ const runLLM = async function (llmType, imageContent, language, icl, resultFilen
   } else if (llmType == "gemini") {
     provider = "gemini";
     model = "gemini-1.5-pro";
-  }
+  } */
+
+/*   const client = new AzureOpenAI({
+    endpoint: process.env.AZURE_OPENAI_ENDPOINT,
+    apiKey: process.env.AZURE_OPENAI_API_KEY,
+    deployment: "gpt-4o",
+    apiVersion: "2024-10-21"
+  }); */
+
   // construct message to pass
   let messagesArray = generateMessage(language, imageContent, icl);
 
   async function main() {
-    const response = await tokenjs.chat.completions.create({
-      provider: provider,
-      model: model,
+    const response = await client2.chat.completions.create({
+      model: "gpt-4o",
       messages: messagesArray
     });
     let result = response.choices[0]["message"]["content"];
@@ -44,6 +58,8 @@ const runLLM = async function (llmType, imageContent, language, icl, resultFilen
       sbgnmlText = sbgnmlText.replaceAll('\"', '"');
       sbgnmlText = sbgnmlText.replaceAll('\n', '');
       sbgnmlText = sbgnmlText.replaceAll('empty set', 'source and sink');
+      sbgnmlText = format(sbgnmlText);
+      writeResult(sbgnmlText, sbgnFilename);
       return sbgnmlText;
     } catch (error) {
       return undefined;
@@ -85,7 +101,7 @@ const generateMessage = function (language, imageContent, icl) {
     let messagesArray = [{
       role: 'system', content: 'You are a helpful and professional assistant for converting hand-drawn biological networks drawn in Systems Biology Graphical Notation (SBGN) Process Description (PD) language and producing the corresponding SBGNML files. For an input hand-drawn biological network, you will analyze it and generate the corresponding SBGNML content. Please provide your final answer in JSON format. Do not return any answer outside of this format. A template looks like this: {"answer": "SBGNML content as a STRING so that we can parse it (This is very important)"}. DO NOT enclose the JSON output in markdown code blocks like ```json and ```, and make sure that you are returning a valid JSON (this is important).'
     }];
-    let userPrompt = "Please generate the SBGNML for this hand-drawn SBGN PD diagram. Please note that macromolecule, simple cehmical, complex, nucleic acid feature, perturbing agent, unspecified entity, compartment, submap, empty set, phenotype, process, omitted process, uncertain process, association, dissociation, and, or, not nodes are represented with 'glyph' tag in SBGNML PD and consumption, production, modulation, simulation, catalysis, inhibition, necessary stimulation and logic arc edges are represented with 'arc' tag in SBGNML PD. Make sure that each element in the graph has the correct tag, this is very inportant. Please also make sure that each glyph has a label and bbox subtags and each arc has source and target defined as attribute inside arc tag (not as subtags). Take your time and act with careful consideration. DO NOT enclose the JSON output in markdown code blocks like ```json and ```, make sure that you are returning a valid JSON (this is important).";
+    let userPrompt = 'Please generate the SBGNML for this hand-drawn SBGN PD diagram. Please note that macromolecule, simple cehmical, complex, nucleic acid feature, perturbing agent, unspecified entity, compartment, submap, empty set, phenotype, process, omitted process, uncertain process, association, dissociation, and, or, not nodes are represented with "glyph" tag in SBGNML PD and consumption, production, modulation, simulation, catalysis, inhibition, necessary stimulation and logic arc edges are represented with "arc" tag in SBGNML PD. Make sure that each element in the graph has the correct tag, this is very inportant. Please also make sure that each glyph has a label and bbox subtags and each arc has source and target defined as attribute inside arc tag (not as subtags). Take your time and act with careful consideration. Please provide your final answer in JSON format. Do not return any answer outside of this format. A template looks like this: {"answer": "SBGNML content as a STRING so that we can parse it (This is very important)"}. DO NOT enclose the JSON output in markdown code blocks like ```json and ```, make sure that you are returning a valid JSON (this is important).';
     if (icl == "no_icl") {
       messagesArray.push({
         role: "user",
@@ -167,7 +183,7 @@ const generateMessage = function (language, imageContent, icl) {
     let messagesArray = [{
       role: 'system', content: 'You are a helpful and professional assistant for converting hand-drawn biological networks drawn in Systems Biology Graphical Notation (SBGN) Activity Flow (AF) language and producing the corresponding SBGNML files. For an input hand-drawn biological network, you will analyze it and generate the corresponding SBGNML content. Please provide your final answer in JSON format. Do not return any answer outside of this format. A template looks like this: {"answer": "SBGNML content as a STRING so that we can parse it (This is very important)"}. DO NOT enclose the JSON output in markdown code blocks like ```json and ```, and make sure that you are returning a valid JSON (this is important).'
     }];
-    let userPrompt = "Please generate the SBGNML for this hand-drawn SBGN AF diagram. Please note that biological activity, phenotype, and, or, not, delay nodes are represented with 'glyph' tag in SBGNML AF and positive influence, negative influence, unknown influence, necessary simulation and logic arc edges are represented with 'arc' tag in SBGNML AF. Make sure that each element in the graph has the correct tag, this is very inportant. Please also make sure that each glyph has a label and bbox subtags and each arc has source and target defined as attribute inside arc tag (not as subtags). Take your time and act with careful consideration. DO NOT enclose the JSON output in markdown code blocks like ```json and ```, make sure that you are returning a valid JSON (this is important).";
+    let userPrompt = 'Please generate the SBGNML for this hand-drawn SBGN AF diagram. Please note that biological activity, phenotype, and, or, not, delay nodes are represented with "glyph" tag in SBGNML AF and positive influence, negative influence, unknown influence, necessary simulation and logic arc edges are represented with "arc" tag in SBGNML AF. Make sure that each element in the graph has the correct tag, this is very inportant. Please also make sure that each glyph has a label and bbox subtags and each arc has source and target defined as attribute inside arc tag (not as subtags). Take your time and act with careful consideration. Please provide your final answer in JSON format. Do not return any answer outside of this format. A template looks like this: {"answer": "SBGNML content as a STRING so that we can parse it (This is very important)"}. DO NOT enclose the JSON output in markdown code blocks like ```json and ```, make sure that you are returning a valid JSON (this is important).';
     if (icl == "no_icl") {
       messagesArray.push({
         role: "user",

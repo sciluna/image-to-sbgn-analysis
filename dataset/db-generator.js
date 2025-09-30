@@ -84,6 +84,8 @@ let generate = function (rows, cols, language) {
     addRandomEdgesPD(grid, cy);
   }
 
+  addTagNodes(grid, cy);
+
   // find disconnected components and remove elements not in the largest one
   let components = cy.elements().components();
   const maxLengthComponent = components.reduce((maxArray, currentArray) => {
@@ -104,7 +106,7 @@ let generate = function (rows, cols, language) {
   return { pngData: png, jsonData: jsonData };
 };
 
-// function to add random edges using BFS
+// function to add random nodes using BFS
 let addBasicNodes = function (rows, cols, cy, language) {
   let grid = [];
 
@@ -515,6 +517,61 @@ let addRandomEdgesPD = function (grid, cy) {
         }
       }
     }
+  }
+}
+
+// function to add tag nodes and equivalence edges between process and EPNs
+let addTagNodes = function (grid, cy) {
+  const rows = grid.length;
+  const cols = grid[0].length;
+
+  const emptyCells = [];
+  // find empty places
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      if (grid[y][x].type == "E") {
+        emptyCells.push({ x, y });
+      }
+    }
+  }
+  // Shuffle the empty cells
+  emptyCells.sort(() => Math.random() - 0.5);
+
+  // directions
+  const directions = [
+    { dx: 0, dy: -1 }, // up
+    { dx: 1, dy: 0 },  // right
+    { dx: 0, dy: 1 },  // down
+    { dx: -1, dy: 0 }, // left
+  ];
+
+  // select the first empty cell that has appropriate neighbor as the tag node position
+  let selectedIndex = -1;
+  let neighborsEPN = [];
+  let canAddLN = false;
+  for (let i = 0; i < emptyCells.length; i++) {
+    const { x, y } = { x: emptyCells[i].x, y: emptyCells[i].y };
+    for (const { dx, dy } of directions) {
+      let newX = x + dx;
+      let newY = y + dy;
+
+      if (newX >= 0 && newX < cols && newY >= 0 && newY < rows && (grid[newY][newX].type == "EPN" || grid[newY][newX].type == "B") && grid[newY][newX].node.data("class") != "source and sink") {
+        neighborsEPN.push(grid[newY][newX].node);
+      }
+    }
+    if (neighborsEPN.length > 0) {
+      canAddLN = true;
+      selectedIndex = i;
+      break;
+    }
+    neighborsEPN = [];
+  }
+
+  if (canAddLN && Math.random() < 0.1) {
+    let newNode = cy.add({ group: 'nodes', data: { class: "tag", "stateVariables": [], "unitsOfInformation": [] }, position: { x: emptyCells[selectedIndex].x * 200, y: emptyCells[selectedIndex].y * 200 } }); // add tag node
+    grid[emptyCells[selectedIndex].y][emptyCells[selectedIndex].x] = { type: "T", node: newNode };
+    let newEdge = cy.add({ group: 'edges', data: { class: "equivalence arc", source: neighborsEPN[0].id(), target: newNode.id() } }); // add equivalence arc
+    newNode.data('label', neighborsEPN[0].data('label')); // add label to tag node
   }
 }
 

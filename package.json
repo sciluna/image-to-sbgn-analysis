@@ -11,15 +11,17 @@
   "author": "Hasan Balci",
   "license": "MIT",
   "dependencies": {
+    "@azure/identity": "^4.11.1",
     "cors": "^2.8.5",
     "cytoscape": "^3.30.3",
     "cytoscape-sbgn-stylesheet": "https://github.com/hasanbalci/cytoscape-sbgn-stylesheet.git",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "file-saver": "^2.0.5",
-    "openai": "^4.52.0",
+    "openai": "^5.12.2",
     "sbgnml-to-cytoscape": "https://github.com/hasanbalci/sbgnml-to-cytoscape.git",
     "sharp": "^0.33.5",
-    "token.js": "^0.4.7"
+    "token.js": "^0.4.7",
+    "xml-formatter": "^3.6.6"
   }
 }

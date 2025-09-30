@@ -3,12 +3,33 @@
     "nodes": [
       {
         "data": {
-          "class": "macromolecule",
-          "label": "OR5B17",
+          "class": "simple chemical",
+          "label": "Ethanol",
           "stateVariables": [],
           "unitsOfInformation": [],
-          "id": "12103e09-b3a4-495d-aa57-87c2d63b73f8",
-          "parent": "1d47c8e5-55bc-427e-b9cb-2671d42fe41f"
+          "id": "n0",
+          "parent": "n13"
+        },
+        "position": {
+          "x": 0,
+          "y": 36
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "nucleic acid feature",
+          "label": "Chromosome",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "n1"
         },
         "position": {
           "x": 400,
@@ -25,12 +46,32 @@
       },
       {
         "data": {
-          "class": "simple chemical",
-          "label": "Butanol",
+          "class": "nucleic acid feature",
+          "label": "Laclm",
           "stateVariables": [],
           "unitsOfInformation": [],
-          "id": "d72ac8e7-fb2a-4595-a0fc-0205990cd768",
-          "parent": "1d47c8e5-55bc-427e-b9cb-2671d42fe41f"
+          "id": "n2"
+        },
+        "position": {
+          "x": 600,
+          "y": 0
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "macromolecule",
+          "label": "HES2",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "n3"
         },
         "position": {
           "x": 200,
@@ -47,11 +88,137 @@
       },
       {
         "data": {
-          "class": "simple chemical",
-          "label": "Aspartate",
+          "class": "macromolecule",
+          "label": "TKTL2",
           "stateVariables": [],
           "unitsOfInformation": [],
-          "id": "40c581e0-0eef-4780-ad40-668bbfe0d5ab"
+          "id": "n4"
+        },
+        "position": {
+          "x": 400,
+          "y": 200
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "nucleic acid feature",
+          "label": "R1",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "n5"
+        },
+        "position": {
+          "x": 0,
+          "y": 400
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "macromolecule",
+          "label": "ENPP6",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "n6"
+        },
+        "position": {
+          "x": 200,
+          "y": 400
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "macromolecule",
+          "label": "SLC4A9",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "n7"
+        },
+        "position": {
+          "x": 200,
+          "y": 600
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "process",
+          "label": "",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "n8"
+        },
+        "position": {
+          "x": 200,
+          "y": 0
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "omitted process",
+          "label": "",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "n9"
+        },
+        "position": {
+          "x": 0,
+          "y": 200
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "process",
+          "label": "",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "n10"
         },
         "position": {
           "x": 600,
@@ -72,11 +239,11 @@
           "label": "",
           "stateVariables": [],
           "unitsOfInformation": [],
-          "id": "776fd122-084a-481f-bfee-c9cb533558a5"
+          "id": "n11"
         },
         "position": {
-          "x": 600,
-          "y": 0
+          "x": 400,
+          "y": 400
         },
         "group": "nodes",
         "removed": false,
@@ -89,15 +256,35 @@
       },
       {
         "data": {
-          "class": "omitted process",
+          "class": "process",
           "label": "",
           "stateVariables": [],
           "unitsOfInformation": [],
-          "id": "fe68fe08-1a2e-4840-8566-f0c762e89f29",
-          "parent": "1d47c8e5-55bc-427e-b9cb-2671d42fe41f"
+          "id": "n12"
         },
         "position": {
-          "x": 200,
+          "x": 0,
+          "y": 600
+        },
+        "group": "nodes",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": false,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "complex",
+          "label": "",
+          "stateVariables": [],
+          "unitsOfInformation": [],
+          "id": "n13"
+        },
+        "position": {
+          "x": 0,
           "y": 0
         },
         "group": "nodes",
@@ -111,15 +298,16 @@
       },
       {
         "data": {
-          "class": "compartment",
-          "label": "Inner membrane",
+          "class": "simple chemical",
+          "label": "Threonine",
           "stateVariables": [],
           "unitsOfInformation": [],
-          "id": "1d47c8e5-55bc-427e-b9cb-2671d42fe41f"
+          "id": "n14",
+          "parent": "n13"
         },
         "position": {
-          "x": 300,
-          "y": 100
+          "x": 0,
+          "y": -36
         },
         "group": "nodes",
         "removed": false,
@@ -134,50 +322,10 @@
     "edges": [
       {
         "data": {
-          "class": "consumption",
-          "source": "12103e09-b3a4-495d-aa57-87c2d63b73f8",
-          "target": "fe68fe08-1a2e-4840-8566-f0c762e89f29",
-          "id": "8ead6560-43b8-441f-b8a0-d3e097fd5c9f"
-        },
-        "position": {
-          "x": 0,
-          "y": 0
-        },
-        "group": "edges",
-        "removed": false,
-        "selected": false,
-        "selectable": true,
-        "locked": false,
-        "grabbable": true,
-        "pannable": true,
-        "classes": ""
-      },
-      {
-        "data": {
           "class": "production",
-          "source": "fe68fe08-1a2e-4840-8566-f0c762e89f29",
-          "target": "d72ac8e7-fb2a-4595-a0fc-0205990cd768",
-          "id": "02085bd6-efd7-4e83-bf7f-b2f0709a53d9"
-        },
-        "position": {
-          "x": 0,
-          "y": 0
-        },
-        "group": "edges",
-        "removed": false,
-        "selected": false,
-        "selectable": true,
-        "locked": false,
-        "grabbable": true,
-        "pannable": true,
-        "classes": ""
-      },
-      {
-        "data": {
-          "class": "production",
-          "source": "776fd122-084a-481f-bfee-c9cb533558a5",
-          "target": "12103e09-b3a4-495d-aa57-87c2d63b73f8",
-          "id": "188d6eda-f8e5-446a-9d1a-8b2444964e4c"
+          "source": "n10",
+          "target": "n1",
+          "id": "e0"
         },
         "position": {
           "x": 0,
@@ -195,9 +343,229 @@
       {
         "data": {
           "class": "consumption",
-          "source": "40c581e0-0eef-4780-ad40-668bbfe0d5ab",
-          "target": "776fd122-084a-481f-bfee-c9cb533558a5",
-          "id": "5ea2d29f-9ed8-4d4d-b500-e3f13c2b2848"
+          "source": "n1",
+          "target": "n8",
+          "id": "e1"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "production",
+          "source": "n8",
+          "target": "n3",
+          "id": "e2"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "modulation",
+          "source": "n13",
+          "target": "n8",
+          "id": "e3"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "consumption",
+          "source": "n13",
+          "target": "n9",
+          "id": "e4"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "production",
+          "source": "n9",
+          "target": "n3",
+          "id": "e5"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "necessary stimulation",
+          "source": "n5",
+          "target": "n9",
+          "id": "e6"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "consumption",
+          "source": "n2",
+          "target": "n10",
+          "id": "e7"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "production",
+          "source": "n10",
+          "target": "n4",
+          "id": "e8"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "consumption",
+          "source": "n4",
+          "target": "n11",
+          "id": "e9"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "production",
+          "source": "n11",
+          "target": "n6",
+          "id": "e10"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "consumption",
+          "source": "n5",
+          "target": "n12",
+          "id": "e11"
+        },
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "group": "edges",
+        "removed": false,
+        "selected": false,
+        "selectable": true,
+        "locked": false,
+        "grabbable": true,
+        "pannable": true,
+        "classes": ""
+      },
+      {
+        "data": {
+          "class": "production",
+          "source": "n12",
+          "target": "n7",
+          "id": "e12"
         },
         "position": {
           "x": 0,
@@ -430,14 +798,14 @@
   "data": {},
   "zoomingEnabled": true,
   "userZoomingEnabled": true,
-  "zoom": 0.9694793536804309,
+  "zoom": 0.7327001356852103,
   "minZoom": 1e-50,
   "maxZoom": 1e+50,
   "panningEnabled": true,
   "userPanningEnabled": true,
   "pan": {
-    "x": -67.91741472172356,
-    "y": 192.99371633752244
+    "x": 90.81411126187245,
+    "y": 102.53731343283582
   },
   "boxSelectionEnabled": true,
   "renderer": {
